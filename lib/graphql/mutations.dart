@@ -32,3 +32,12 @@ const String SIGNUP_MUTATION = r'''
     }
   }
 ''';
+
+// ignore: constant_identifier_names
+const ADD_TO_CART_MUTATION = r'''
+  mutation ADD_TO_CART_MUTATION($id: ID!) {
+    addToCart(productId: $id) {
+      id
+    }
+  }
+''';

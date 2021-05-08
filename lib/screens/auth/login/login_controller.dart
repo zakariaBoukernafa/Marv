@@ -47,8 +47,7 @@ class LoginController extends GetxController {
       appState.value = AppState.DONE;
       buttonState.value = ButtonState.success;
       final gql.Response currentUser = await fetchCurrentUser();
-      UserController.to.user!.value = User.fromJson(currentUser.data!);
-      UserController.to.saveUser();
+      UserController.to.saveUser(user: User.fromJson(currentUser.data!));
     } on AuthenticationException catch (e) {
       appState.value = AppState.ERROR;
       buttonState.value = ButtonState.fail;

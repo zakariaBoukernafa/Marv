@@ -52,16 +52,8 @@ class CartScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              CartItem(),
-              CartItem(),
-              CartItem(),
-              CartItem(),
-              CartItem(),
-              CartItem(),
-              CartItem(),
-            ],
+          child: AnimatedList(
+            itemBuilder: (context,),
           ),
         ),
       ),
