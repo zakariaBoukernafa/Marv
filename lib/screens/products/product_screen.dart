@@ -35,7 +35,9 @@ class ProductScreen extends StatelessWidget {
       ) as PreferredSizeWidget?,
       floatingActionButton: ElevatedButton(
         onPressed: () =>
-            Get.to(()=>AuthGuard(guardedItem: CartScreen(),)),
+            Get.to((){
+              return AuthGuard(guardedItem: CartScreen(),);
+            }),
         child: const Text('add To Cart'),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

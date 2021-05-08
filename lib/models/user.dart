@@ -1,4 +1,5 @@
-import 'cart.dart';
+
+import 'package:ecommerce/models/cart.dart';
 
 class User {
   AuthenticatedItem? authenticatedItem;

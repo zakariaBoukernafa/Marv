@@ -1,4 +1,5 @@
 import 'package:ecommerce/Controllers/Binding/auth_binding.dart';
+import 'package:ecommerce/Controllers/Binding/cart_binding.dart';
 import 'package:ecommerce/Controllers/Binding/dashboard_binding.dart';
 import 'package:ecommerce/Screens/Auth/Login/login.dart';
 import 'package:ecommerce/Screens/Auth/SignUp/signup.dart';
@@ -32,12 +33,12 @@ class Pages {
     GetPage(
       name: Routers.product,
       page: () => ProductScreen(),
-      binding: AuthBinding(),
+      bindings: [ AuthBinding(),CartBinding(),]
     ),
     GetPage(
       name: Routers.cart,
       page: () => CartScreen(),
-      binding: AuthBinding(),
+
     ),
   ];
 }

@@ -1,11 +1,13 @@
+import 'package:ecommerce/Services/format_money.dart';
 import 'package:ecommerce/Widgets/Appbars/app_bar.dart';
-import 'package:ecommerce/Widgets/Containers/cart_item.dart';
+import 'package:ecommerce/screens/products/products_controller.dart';
 import 'package:ecommerce/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CartScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,9 +24,9 @@ class CartScreen extends StatelessWidget {
                 width: Get.height> Get.width ? Get.width*0.8 :Get.height*0.8,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                     Text("Total of 2 items"),
-                     Text('USD 260',style:  TextStyle(fontWeight: FontWeight.bold),)
+                  children:  [
+                     Text("Total of ${ProductsController.to.cartItems.length} items"),
+                     Text(FormatMoney().format(ProductsController.to.cartCharge.value),style:  const TextStyle(fontWeight: FontWeight.bold),)
                   ],
                 ),
               ),
@@ -52,10 +54,15 @@ class CartScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: AnimatedList(
-            itemBuilder: (context,),
-          ),
+          child: Obx(()=>AnimatedList(
+            shrinkWrap: true,
+            initialItemCount: ProductsController.to.cartItems.length,
+            itemBuilder: (context,int index ,Animation animation){
+              return ProductsController.to.cartItems[index];
+            },
+          ),)
         ),
+
       ),
     );
   }

@@ -1,8 +1,14 @@
+import 'package:ecommerce/Services/format_money.dart';
 import 'package:ecommerce/Widgets/buttons/counter_button.dart';
+import 'package:ecommerce/models/cart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CartItem extends StatelessWidget {
+  final Cart cartItem;
+
+  const CartItem({ required this.cartItem});
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -10,7 +16,7 @@ class CartItem extends StatelessWidget {
         Flexible(
             flex: 4,
             child: Image.network(
-              'https://pyxis.nymag.com/v1/imgs/853/030/fa9bfcf1f90e2fc68cd8a6fddb282fd1b6-men-packaged-dry-crew-neck.2x.rsquare.w600.jpg',
+              cartItem.product!.photo!.image!.publicUrlTransformed!,
               fit: BoxFit.cover,
             )),
         const Spacer(),
@@ -20,12 +26,12 @@ class CartItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('T-shirt', style: TextStyle(fontSize: 20.0)),
-                const Padding(
-                  padding: EdgeInsets.only(top: 8.0),
+                 Text(cartItem.product!.name!, style: const TextStyle(fontSize: 20.0)),
+                 Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
                   child: Text(
-                    'USD 50',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    FormatMoney().format(cartItem.product!.price!),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
                 Padding(
