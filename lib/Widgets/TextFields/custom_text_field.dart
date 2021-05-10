@@ -72,7 +72,7 @@ class CustomTextFormField extends StatelessWidget {
         onTap: onTap as void Function()?,
         onChanged: onChanged,
         onEditingComplete: onEditingComplete as void Function()?,
-        cursorColor: Get.theme!.primaryColor,
+        cursorColor: Get.theme.primaryColor,
         style: inputFieldTextStyle,
         obscureText: obscureText,
         keyboardType: textInputType,

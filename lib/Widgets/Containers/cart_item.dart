@@ -51,8 +51,7 @@ class CartItem extends StatelessWidget {
                                 size: 20,
                               ),
                             ),
-                            //todo: add functionality
-                            const Text('1'),
+                             Text(cartItem.quantity.toString()),
                             CounterButton(
                               onPressed: () => null,
                               child: const Icon(

@@ -42,23 +42,16 @@ class LoginController extends GetxController {
         throw AuthenticationException(
             res.data!["authenticateUserWithPassword"]["message"] as String);
       }
-
       authenticatedItem.value = AuthItem.fromJson(res.data!);
+     await UserController.to.fetchCurrentUser();
+      UserController.to.saveUser();
       appState.value = AppState.DONE;
       buttonState.value = ButtonState.success;
-      final gql.Response currentUser = await fetchCurrentUser();
-      UserController.to.saveUser(user: User.fromJson(currentUser.data!));
     } on AuthenticationException catch (e) {
       appState.value = AppState.ERROR;
       buttonState.value = ButtonState.fail;
       Get.snackbar("Error", e.message);
     }
-  }
-
-  Future<gql.Response> fetchCurrentUser() async {
-    return GqlController.to.httpClient.post(
-      gql: CURRENT_USER_QUERY,
-    );
   }
 
   bool get isEmailValid => GetUtils.isEmail(email.value);

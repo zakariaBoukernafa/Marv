@@ -5,6 +5,7 @@ import 'package:ecommerce/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class CartScreen extends StatelessWidget {
 
@@ -14,7 +15,7 @@ class CartScreen extends StatelessWidget {
       floatingActionButton: Container(
         width: Get.width,
         color: white,
-        height: 100,
+        height: Get.height*0.15,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -31,7 +32,7 @@ class CartScreen extends StatelessWidget {
                 ),
               ),
               ElevatedButton(
-                onPressed: () => null,
+                  onPressed: () async => print(await GetStorage().read("cookie")),
                 child: const Text('add To Cart'),
               ),
             ],
@@ -51,18 +52,15 @@ class CartScreen extends StatelessWidget {
           ),
         ],
       ) as PreferredSizeWidget?,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Obx(()=>AnimatedList(
-            shrinkWrap: true,
-            initialItemCount: ProductsController.to.cartItems.length,
-            itemBuilder: (context,int index ,Animation animation){
-              return ProductsController.to.cartItems[index];
-            },
-          ),)
-        ),
+      body: Padding(
+        padding:  EdgeInsets.only(left:16.0,right:16.0,top: 16.0,bottom: Get.height*0.15),
+        child: Obx(()=>AnimatedList(
 
+          initialItemCount: ProductsController.to.cartItems.length,
+          itemBuilder: (context,int index ,Animation animation){
+            return ProductsController.to.cartItems[index];
+          },
+        ),)
       ),
     );
   }

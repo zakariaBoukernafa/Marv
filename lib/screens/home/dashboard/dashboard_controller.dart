@@ -22,8 +22,6 @@ class DashboardController extends GetxController {
           products.add(Product.fromJson(element as Map<String, dynamic>));
         });
         this.products.value = products;
-        //todo: remove on production
-       //print('products :${products.length}');
 
       appState.value = AppState.DONE;
     } catch (e) {

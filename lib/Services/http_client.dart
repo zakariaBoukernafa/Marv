@@ -15,6 +15,7 @@ class HttpClient {
     link = DioLink(
       endpoint,
       client: client,
+
     );
   }
 
@@ -25,10 +26,10 @@ class HttpClient {
       return handler.next(options);
     },
         onResponse: (response, handler) async {
-
-
       if (storeCookie) {
-        await box.write("cookie", response.headers.value("set-cookie"));
+        if(response.headers.value("set-cookie") != null){
+          await box.write("cookie",response.headers.value("set-cookie"));
+        }
       }
 
       return handler.next(response);
@@ -42,7 +43,6 @@ class HttpClient {
           variables: variables ?? {},
         ))
         .first;
-
 
     return res;
   }

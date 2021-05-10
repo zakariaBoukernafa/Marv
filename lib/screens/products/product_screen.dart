@@ -1,6 +1,8 @@
 import 'package:ecommerce/Services/format_money.dart';
 import 'package:ecommerce/Widgets/Appbars/app_bar.dart';
 import 'package:ecommerce/Widgets/Containers/product_preview.dart';
+import 'package:ecommerce/models/product.dart';
+import 'package:ecommerce/screens/products/products_controller.dart';
 import 'package:ecommerce/theme/colors.dart';
 import 'package:ecommerce/utils/auth_guard.dart';
 import 'package:flutter/cupertino.dart';
@@ -34,10 +36,10 @@ class ProductScreen extends StatelessWidget {
         ],
       ) as PreferredSizeWidget?,
       floatingActionButton: ElevatedButton(
-        onPressed: () =>
-            Get.to((){
-              return AuthGuard(guardedItem: CartScreen(),);
-            }),
+        onPressed: () {
+          ProductsController.to.addToCart(product as Product);
+           Get.to(()=> AuthGuard(guardedItem: CartScreen(),));
+        },
         child: const Text('add To Cart'),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -50,7 +52,7 @@ class ProductScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  FormatMoney().format(product.price! as int),
+                  FormatMoney().format(product.price! as int ),
                   style: style.headline6!.copyWith(color: green),
                 ),
                 Text(

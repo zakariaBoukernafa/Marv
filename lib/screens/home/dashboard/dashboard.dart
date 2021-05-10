@@ -61,9 +61,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "${'hi'.tr} ${UserController.to.user!.value?.authenticatedItem?.name ?? "There"}",
-                  style: style.bodyText1,
+                Obx(()=>
+                  Text(
+                    "${'hi'.tr} ${UserController.to.user!.value?.authenticatedItem?.name ?? "There"}",
+                    style: style.bodyText1,
+                  ),
                 ),
                 SizedBox(
                   height: Get.height * 0.01,
@@ -95,8 +97,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 ),
                 Obx(() => (DashboardController.to.products.isNotEmpty)
                     ? PresentationItem(
-                        product: DashboardController.to.products[_random
-                            .nextInt(DashboardController.to.products.length) ] as Product,
+                        product: DashboardController.to.products[
+                                _random.nextInt(
+                                    DashboardController.to.products.length)]
+                            as Product,
                       )
                     : Container()),
                 CategoryDiv(

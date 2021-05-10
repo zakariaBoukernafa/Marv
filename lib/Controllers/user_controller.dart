@@ -1,7 +1,11 @@
+import 'package:ecommerce/Controllers/gql_controller.dart';
 import 'package:ecommerce/Models/user.dart';
+import 'package:ecommerce/graphql/queries.dart';
+import 'package:ecommerce/screens/products/products_controller.dart';
 import 'package:ecommerce/utils/user_state.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:graphql_flutter/graphql_flutter.dart' as gql;
 
 class UserController extends GetxController {
   static UserController get to => Get.find();
@@ -13,15 +17,12 @@ class UserController extends GetxController {
   @override
   Future<void> onInit() async {
     super.onInit();
-    await GetStorage.init();
     loadUser();
   }
 
   Rxn<User>? get user => _user;
 
-  Future<void> saveUser({required User user}) async {
-    _user.value = user;
-    print(user.authenticatedItem!.email);
+  Future<void> saveUser() async {
     await _box.write("user", _user);
     UserController.to.userState.value = UserState.AUTHENTICATED;
   }
@@ -31,12 +32,24 @@ class UserController extends GetxController {
 
     if (data != null) {
       _user.value = User.fromJson(data as Map<String, dynamic>);
-      print("user value : ${_user.value}");
-      userState.value = UserState.AUTHENTICATED;
-    } else {
-      userState.value = UserState.UNAUTHENTICATED;
+      if (_user.value!.authenticatedItem != null) {
+        userState.value = UserState.AUTHENTICATED;
+      }
+      else {
+        userState.value = UserState.UNAUTHENTICATED;
+      }
     }
-    //todo: remove
     print(userState.value);
+  }
+
+  Future<void> fetchCurrentUser() async {
+    final gql.Response response = await GqlController.to.httpClient.post(
+      gql: CURRENT_USER_QUERY,
+    );
+    _user.value = User.fromJson(response.data!);
+    if (_user.value!.authenticatedItem != null){
+      saveUser();
+      ProductsController.to.getCartItems();
+    }
   }
 }
