@@ -42,4 +42,13 @@ const ADD_TO_CART_MUTATION = r'''
   }
 ''';
 
+// ignore: constant_identifier_names
+const DELETE_PRODUCT_FROM_CART = r'''
+  mutation DELETE_PRODUCT_FROM_CART($id: ID!) {
+    deleteCartItem(id: $id) {
+      id
+    }
+  }
+''';
+
 

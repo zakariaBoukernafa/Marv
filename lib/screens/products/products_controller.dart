@@ -24,20 +24,20 @@ class ProductsController extends GetxController {
   }
 
   void getCartItems() {
-    if(UserController.to.userState.value == UserState.AUTHENTICATED){
-      cartItems.assignAll(UserController.to.user!.value!.authenticatedItem!.cart!
+    if (UserController.to.userState.value == UserState.AUTHENTICATED) {
+      cartItems.assignAll(UserController
+          .to.user!.value!.authenticatedItem!.cart!
           .map((cartItem) => CartItem(cartItem: cartItem as Cart)));
     }
-
   }
 
   void getCartCharge() {
     if (UserController.to.userState.value == UserState.AUTHENTICATED) {
       cartCharge.value = UserController.to.user!.value!.authenticatedItem!.cart!
           .fold(
-          0,
+              0,
               (num previousValue, cartItem) =>
-          previousValue + cartItem.product!.price! * cartItem.quantity!)
+                  previousValue + cartItem.product!.price! * cartItem.quantity!)
           .toInt();
     }
   }
@@ -46,10 +46,26 @@ class ProductsController extends GetxController {
     try {
       appState.value = AppState.LOADING;
       await GqlController.to.httpClient
-          .post(gql: ADD_TO_CART_MUTATION, variables: {"id": product.id!.toString(),});
+          .post(gql: ADD_TO_CART_MUTATION, variables: {
+        "id": product.id!.toString(),
+      });
 
       appState.value = AppState.DONE;
-     await UserController.to.fetchCurrentUser();
+      await UserController.to.fetchCurrentUser();
+    } catch (e) {
+      print(e);
+    }
+  }
+  Future<void> deleteFromCart(String id) async {
+    try {
+      appState.value = AppState.LOADING;
+      await GqlController.to.httpClient
+          .post(gql: DELETE_PRODUCT_FROM_CART, variables: {
+        "id": id.toString(),
+      });
+
+      appState.value = AppState.DONE;
+      await UserController.to.fetchCurrentUser();
     } catch (e) {
       print(e);
     }

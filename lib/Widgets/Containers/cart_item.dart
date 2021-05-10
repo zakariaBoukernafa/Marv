@@ -1,6 +1,7 @@
 import 'package:ecommerce/Services/format_money.dart';
 import 'package:ecommerce/Widgets/buttons/counter_button.dart';
 import 'package:ecommerce/models/cart.dart';
+import 'package:ecommerce/screens/products/products_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -53,7 +54,7 @@ class CartItem extends StatelessWidget {
                             ),
                              Text(cartItem.quantity.toString()),
                             CounterButton(
-                              onPressed: () => null,
+                              onPressed: () => ProductsController.to.addToCart(cartItem.product!),
                               child: const Icon(
                                 CupertinoIcons.plus,
                                 size: 20,
@@ -64,7 +65,7 @@ class CartItem extends StatelessWidget {
                       ),
                       IconButton(
 
-                          onPressed: () => null,
+                        onPressed: () => ProductsController.to.deleteFromCart(cartItem.id!),
                         icon: const Icon(
                           CupertinoIcons.trash,
                           size: 20.0,

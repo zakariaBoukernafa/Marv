@@ -8,38 +8,44 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class CartScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: Container(
         width: Get.width,
         color: white,
-        height: Get.height*0.15,
+        height: Get.height * 0.15,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               SizedBox(
-                width: Get.height> Get.width ? Get.width*0.8 :Get.height*0.8,
+                width:
+                    Get.height > Get.width ? Get.width * 0.8 : Get.height * 0.8,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children:  [
-                     Text("Total of ${ProductsController.to.cartItems.length} items"),
-                     Text(FormatMoney().format(ProductsController.to.cartCharge.value),style:  const TextStyle(fontWeight: FontWeight.bold),)
+                  children: [
+                    Text(
+                        "Total of ${ProductsController.to.cartItems.length} items"),
+                    Text(
+                      FormatMoney()
+                          .format(ProductsController.to.cartCharge.value),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    )
                   ],
                 ),
               ),
               ElevatedButton(
-                  onPressed: () async => print(await GetStorage().read("cookie")),
+                onPressed: () async => print(await GetStorage().read("cookie")),
                 child: const Text('add To Cart'),
               ),
             ],
           ),
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterDocked,
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterDocked,
       appBar: appBar(
         title: const Text('Shopping Cart', style: TextStyle(color: black)),
         actions: [
@@ -53,15 +59,16 @@ class CartScreen extends StatelessWidget {
         ],
       ) as PreferredSizeWidget?,
       body: Padding(
-        padding:  EdgeInsets.only(left:16.0,right:16.0,top: 16.0,bottom: Get.height*0.15),
-        child: Obx(()=>AnimatedList(
-
-          initialItemCount: ProductsController.to.cartItems.length,
-          itemBuilder: (context,int index ,Animation animation){
-            return ProductsController.to.cartItems[index];
-          },
-        ),)
-      ),
+          padding: EdgeInsets.only(
+              left: 16.0, right: 16.0, top: 16.0, bottom: Get.height * 0.15),
+          child: Obx(
+            () => AnimatedList(
+              initialItemCount: ProductsController.to.cartItems.length,
+              itemBuilder: (context, int index, Animation animation) {
+                return ProductsController.to.cartItems[index];
+              },
+            ),
+          )),
     );
   }
 }
