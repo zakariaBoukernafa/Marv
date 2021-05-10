@@ -17,28 +17,25 @@ class ProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextTheme style = Theme
-        .of(context)
-        .textTheme;
+    final TextTheme style = Theme.of(context).textTheme;
     return Scaffold(
       appBar: appBar(
         actions: [
           Builder(
-            builder: (context) =>
-                IconButton(
-                  icon: const Icon(CupertinoIcons.shopping_cart),
-                  onPressed: () => Scaffold.of(context).openEndDrawer(),
-                  tooltip: MaterialLocalizations
-                      .of(context)
-                      .openAppDrawerTooltip,
-                ),
+            builder: (context) => IconButton(
+              icon: const Icon(CupertinoIcons.shopping_cart),
+              onPressed: () => Scaffold.of(context).openEndDrawer(),
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            ),
           ),
         ],
       ) as PreferredSizeWidget?,
       floatingActionButton: ElevatedButton(
         onPressed: () {
           ProductsController.to.addToCart(product as Product);
-           Get.to(()=> AuthGuard(guardedItem: CartScreen(),));
+          Get.to(() => AuthGuard(
+                guardedItem: CartScreen(),
+              ));
         },
         child: const Text('add To Cart'),
       ),
@@ -52,7 +49,7 @@ class ProductScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  FormatMoney().format(product.price! as int ),
+                  FormatMoney().format(product.price! as int),
                   style: style.headline6!.copyWith(color: green),
                 ),
                 Text(
@@ -73,23 +70,25 @@ class ProductScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 16.0),
                   child: SizedBox(
                     //Add this to give height
-                    height: Get.height > Get.width ? Get.height * 0.6 : Get
-                        .width * 0.5,
+                    height: Get.height > Get.width
+                        ? Get.height * 0.6
+                        : Get.width * 0.5,
                     child: TabBarView(children: [
                       Column(
                         children: [
                           ProductPreview(
                             child: Image.network(
-                              product.photo!.image!
-                                  .publicUrlTransformed! as String,
+                              product.photo!.image!.publicUrlTransformed!
+                                  as String,
                               fit: BoxFit.cover,
                             ),
                           ),
                           SizedBox(
                               width: 300,
-                              child: Text(product.description! as String,
-                                style: style.headline5,))
-
+                              child: Text(
+                                product.description! as String,
+                                style: style.headline5,
+                              ))
                         ],
                       ),
                       const Text("Articles Body"),

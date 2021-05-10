@@ -1,11 +1,13 @@
 import 'package:ecommerce/Controllers/gql_controller.dart';
 import 'package:ecommerce/Controllers/user_controller.dart';
 import 'package:ecommerce/Widgets/Containers/cart_item.dart';
+import 'package:ecommerce/Widgets/animations/slide_animation.dart';
 import 'package:ecommerce/graphql/mutations.dart';
 import 'package:ecommerce/models/cart.dart';
 import 'package:ecommerce/models/product.dart';
 import 'package:ecommerce/utils/app_state.dart';
 import 'package:ecommerce/utils/user_state.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductsController extends GetxController {
@@ -13,6 +15,8 @@ class ProductsController extends GetxController {
 
   final appState = Rx<AppState>(AppState.IDLE);
   RxList<CartItem> cartItems = RxList<CartItem>();
+
+  final GlobalKey<AnimatedListState> listKey = GlobalKey<AnimatedListState>();
 
   RxInt cartCharge = RxInt(0);
 
@@ -27,7 +31,9 @@ class ProductsController extends GetxController {
     if (UserController.to.userState.value == UserState.AUTHENTICATED) {
       cartItems.assignAll(UserController
           .to.user!.value!.authenticatedItem!.cart!
-          .map((cartItem) => CartItem(cartItem: cartItem as Cart)));
+          .map((cartItem) => CartItem(
+              cartItem: cartItem as Cart, index: UserController
+          .to.user!.value!.authenticatedItem!.cart!.indexOf(cartItem))));
     }
   }
 
@@ -56,9 +62,17 @@ class ProductsController extends GetxController {
       print(e);
     }
   }
-  Future<void> deleteFromCart(String id) async {
+
+  Future<void> deleteFromCart(String id, int index) async {
     try {
       appState.value = AppState.LOADING;
+      print(index);
+      listKey.currentState!.removeItem(
+          index,
+          (context, animation) =>
+              slidAnimation(context, animation, cartItems[index]),
+          duration: const Duration(milliseconds: 200));
+
       await GqlController.to.httpClient
           .post(gql: DELETE_PRODUCT_FROM_CART, variables: {
         "id": id.toString(),

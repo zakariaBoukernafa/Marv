@@ -7,7 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-class CartScreen extends StatelessWidget {
+class CartScreen extends StatefulWidget {
+  @override
+  _CartScreenState createState() => _CartScreenState();
+}
+
+class _CartScreenState extends State<CartScreen> with SingleTickerProviderStateMixin {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,17 +29,19 @@ class CartScreen extends StatelessWidget {
               SizedBox(
                 width:
                     Get.height > Get.width ? Get.width * 0.8 : Get.height * 0.8,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                        "Total of ${ProductsController.to.cartItems.length} items"),
-                    Text(
-                      FormatMoney()
-                          .format(ProductsController.to.cartCharge.value),
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    )
-                  ],
+                child: Obx(
+                  ()=> Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                          "Total of ${ProductsController.to.cartItems.length} items"),
+                      Text(
+                        FormatMoney()
+                            .format(ProductsController.to.cartCharge.value),
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  ),
                 ),
               ),
               ElevatedButton(
@@ -63,6 +71,7 @@ class CartScreen extends StatelessWidget {
               left: 16.0, right: 16.0, top: 16.0, bottom: Get.height * 0.15),
           child: Obx(
             () => AnimatedList(
+              key: ProductsController.to.listKey,
               initialItemCount: ProductsController.to.cartItems.length,
               itemBuilder: (context, int index, Animation animation) {
                 return ProductsController.to.cartItems[index];

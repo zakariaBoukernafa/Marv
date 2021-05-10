@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 
 class CartItem extends StatelessWidget {
   final Cart cartItem;
-
-  const CartItem({ required this.cartItem});
+  final int index;
+  const CartItem({ required this.cartItem, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +65,7 @@ class CartItem extends StatelessWidget {
                       ),
                       IconButton(
 
-                        onPressed: () => ProductsController.to.deleteFromCart(cartItem.id!),
+                        onPressed: () => ProductsController.to.deleteFromCart(cartItem.id!,index),
                         icon: const Icon(
                           CupertinoIcons.trash,
                           size: 20.0,
