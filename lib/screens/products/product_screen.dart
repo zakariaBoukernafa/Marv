@@ -4,6 +4,7 @@ import 'package:ecommerce/Widgets/Containers/product_preview.dart';
 import 'package:ecommerce/models/product.dart';
 import 'package:ecommerce/screens/products/products_controller.dart';
 import 'package:ecommerce/theme/colors.dart';
+import 'package:ecommerce/utils/app_state.dart';
 import 'package:ecommerce/utils/auth_guard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -30,14 +31,21 @@ class ProductScreen extends StatelessWidget {
           ),
         ],
       ) as PreferredSizeWidget?,
-      floatingActionButton: ElevatedButton(
-        onPressed: () {
-          ProductsController.to.addToCart(product as Product);
-          Get.to(() => AuthGuard(
-                guardedItem: CartScreen(),
-              ));
-        },
-        child: const Text('add To Cart'),
+      floatingActionButton: Obx(
+        ()=> ElevatedButton(
+          onPressed: () async {
+            if (ProductsController.to.appState.value != AppState.LOADING) {
+              await ProductsController.to.addToCart(product as Product);
+
+              Get.to(() => AuthGuard(
+                    guardedItem: CartScreen(),
+                  ));
+            }
+          },
+          child: ProductsController.to.appState.value == AppState.LOADING
+              ? const CircularProgressIndicator(backgroundColor: white,)
+              : const Text('add To Cart'),
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SingleChildScrollView(

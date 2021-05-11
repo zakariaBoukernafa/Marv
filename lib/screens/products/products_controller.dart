@@ -32,7 +32,7 @@ class ProductsController extends GetxController {
       cartItems.assignAll(UserController
           .to.user!.value!.authenticatedItem!.cart!
           .map((cartItem) => CartItem(
-              cartItem: cartItem as Cart,
+              cartItem: cartItem,
               index: UserController.to.user!.value!.authenticatedItem!.cart!
                   .indexOf(cartItem))));
       getCartCharge();
@@ -57,9 +57,9 @@ class ProductsController extends GetxController {
   }
 
   Future<void> addToCart(Product product) async {
+
     try {
       appState.value = AppState.LOADING;
-
       await GqlController.to.httpClient
           .post(gql: ADD_TO_CART_MUTATION, variables: {
         "id": product.id!.toString(),
@@ -78,7 +78,7 @@ class ProductsController extends GetxController {
       listKey.currentState!.removeItem(
           index,
           (context, animation) =>
-              slidAnimation(context, animation, cartItems[index]),
+              slidAnimation(context: context,animation: animation,child: cartItems[index]),
           duration: const Duration(milliseconds: 200));
 
       await GqlController.to.httpClient

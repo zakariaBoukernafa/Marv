@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget slidAnimation(BuildContext context, Animation<double> animation,Widget child) {
+Widget slidAnimation({required BuildContext context, required Animation<double> animation,required Widget child}) {
   return SlideTransition(
     position: Tween<Offset>(
       begin: const Offset(-1, 0),

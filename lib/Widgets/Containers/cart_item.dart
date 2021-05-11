@@ -64,7 +64,6 @@ class CartItem extends StatelessWidget {
                         ),
                       ),
                       IconButton(
-
                         onPressed: () => ProductsController.to.deleteFromCart(cartItem.id!,index),
                         icon: const Icon(
                           CupertinoIcons.trash,
