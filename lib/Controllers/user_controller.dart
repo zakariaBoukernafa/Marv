@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:ecommerce/Controllers/gql_controller.dart';
 import 'package:ecommerce/Models/user.dart';
 import 'package:ecommerce/graphql/queries.dart';
@@ -29,13 +31,13 @@ class UserController extends GetxController {
 
   Future<void> loadUser() async {
     final data = await _box.read("user");
-
-    if (data != null) {
+    final cookie = await _box.read("cookie") as String;
+    if (data != null &&
+        Cookie.fromSetCookieValue(cookie).expires!.isAfter(DateTime.now())) {
       _user.value = User.fromJson(data as Map<String, dynamic>);
       if (_user.value!.authenticatedItem != null) {
         userState.value = UserState.AUTHENTICATED;
-      }
-      else {
+      } else {
         userState.value = UserState.UNAUTHENTICATED;
       }
     }
@@ -47,7 +49,7 @@ class UserController extends GetxController {
       gql: CURRENT_USER_QUERY,
     );
     _user.value = User.fromJson(response.data!);
-    if (_user.value!.authenticatedItem != null){
+    if (_user.value!.authenticatedItem != null) {
       saveUser();
       ProductsController.to.getCartItems();
     }

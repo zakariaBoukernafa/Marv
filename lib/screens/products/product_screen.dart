@@ -12,10 +12,20 @@ import 'package:get/get.dart';
 
 import 'cart.dart';
 
-class ProductScreen extends StatelessWidget {
+class ProductScreen extends StatefulWidget {
   // ignore: type_annotate_public_apis
-  final product = Get.arguments;
+  @override
+  _ProductScreenState createState() => _ProductScreenState();
+}
 
+class _ProductScreenState extends State<ProductScreen> {
+  late final product;
+    @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    product  = Get.arguments;
+  }
   @override
   Widget build(BuildContext context) {
     final TextTheme style = Theme.of(context).textTheme;
