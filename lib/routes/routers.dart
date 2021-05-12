@@ -7,6 +7,6 @@ class Routers {
   static const product = '/product';
   static const cart = '/cart';
   static const authGuard = '/authGuard';
-
+  static const checkout = '/checkout';
 }
 

@@ -1,5 +1,6 @@
 import 'package:ecommerce/Controllers/Binding/auth_binding.dart';
 import 'package:ecommerce/Controllers/Binding/cart_binding.dart';
+import 'package:ecommerce/Controllers/Binding/checkout_binding.dart';
 import 'package:ecommerce/Controllers/Binding/dashboard_binding.dart';
 import 'package:ecommerce/Screens/Auth/Login/login.dart';
 import 'package:ecommerce/Screens/Auth/SignUp/signup.dart';
@@ -8,7 +9,8 @@ import 'package:ecommerce/Screens/Products/cart.dart';
 import 'package:ecommerce/Screens/Products/product_screen.dart';
 
 import 'package:ecommerce/routes/routers.dart';
-import 'package:ecommerce/utils/auth_guard.dart';
+import 'package:ecommerce/screens/payment/checkout.dart';
+import 'package:ecommerce/screens/payment/checkout_controller.dart';
 import 'package:get/get.dart';
 
 // ignore: avoid_classes_with_only_static_members
@@ -39,6 +41,11 @@ class Pages {
       name: Routers.cart,
       page: () => CartScreen(),
 
+    ),
+    GetPage(
+      name: Routers.checkout,
+      page: () => CheckoutScreen(),
+      binding: CheckoutBinding(),
     ),
   ];
 }

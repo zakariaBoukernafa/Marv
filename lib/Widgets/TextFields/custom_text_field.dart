@@ -22,6 +22,7 @@ class CustomTextFormField extends StatelessWidget {
   final String? initialValue;
   final TextEditingController? controller;
   final int maxLines;
+  final int? maxLength;
   final List<TextInputFormatter>? inputFormatter;
   final AutovalidateMode autoValidateMode;
   final String? hintText;
@@ -48,6 +49,7 @@ class CustomTextFormField extends StatelessWidget {
     this.initialValue,
     this.controller,
     this.maxLines = 1,
+    this.maxLength,
     this.inputFormatter,
     this.autoValidateMode = AutovalidateMode.disabled,
     this.hintText,
@@ -77,6 +79,7 @@ class CustomTextFormField extends StatelessWidget {
         obscureText: obscureText,
         keyboardType: textInputType,
         onSaved: onSaved,
+        maxLength: maxLength,
         autocorrect: autoCorrect,
         validator: validator,
         decoration: InputDecoration(
@@ -89,6 +92,7 @@ class CustomTextFormField extends StatelessWidget {
           hintText: hintText,
           errorText: errorText,
           labelText: labelText,
+
           hintStyle: inputFieldHintTextStyle,
           focusedBorder: inputFieldFocusedBorderStyle,
           contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),

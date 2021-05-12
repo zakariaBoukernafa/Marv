@@ -43,6 +43,24 @@ class Themes {
         borderRadius: BorderRadius.circular(4),
       ),
     ),
+    inputDecorationTheme:  InputDecorationTheme(
+      labelStyle: const TextStyle(
+          color: darkGrey,
+      ),
+    focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10.0),
+        borderSide:   const BorderSide(
+          color: red,
+        ),
+      ),
+      errorBorder:  OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10.0),
+        borderSide:   const BorderSide(
+          color: red,
+        ),
+      ),
+
+    ),
     textTheme: TextTheme(
       headline1: GoogleFonts.dmSans(
           color: black, fontWeight: FontWeight.bold, letterSpacing: 0.64),

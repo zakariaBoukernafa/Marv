@@ -1,5 +1,6 @@
 import 'package:ecommerce/Services/format_money.dart';
 import 'package:ecommerce/Widgets/Appbars/app_bar.dart';
+import 'package:ecommerce/routes/routers.dart';
 import 'package:ecommerce/screens/products/products_controller.dart';
 import 'package:ecommerce/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
@@ -45,8 +46,8 @@ class _CartScreenState extends State<CartScreen> with SingleTickerProviderStateM
                 ),
               ),
               ElevatedButton(
-                onPressed: () async => print(await GetStorage().read("cookie")),
-                child: const Text('add To Cart'),
+                onPressed: () async => Get.toNamed( Routers.checkout),
+                child: const Text('Checkout'),
               ),
             ],
           ),

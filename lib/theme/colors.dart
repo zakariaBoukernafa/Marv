@@ -8,3 +8,4 @@ const Color white = Color(0xFFFFFFFF);
 const Color green = Color(0xFF0ACF83);
 const Color black = Color(0xFF000000);
 const Color accent = Color(0xFFFFC120);
+const Color red = Color(0xFFB22222);
