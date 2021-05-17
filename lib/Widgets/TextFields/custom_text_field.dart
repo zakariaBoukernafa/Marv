@@ -28,6 +28,7 @@ class CustomTextFormField extends StatelessWidget {
   final String? hintText;
   final TextInputAction? textInputAction;
   final Widget? suffix;
+  final FocusNode? focusNode;
   final Widget? prefix;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
@@ -55,6 +56,7 @@ class CustomTextFormField extends StatelessWidget {
     this.hintText,
     this.textInputAction,
     this.suffix,
+    this.focusNode,
     this.prefix,
     this.prefixIcon,
     this.suffixIcon,
@@ -80,6 +82,7 @@ class CustomTextFormField extends StatelessWidget {
         keyboardType: textInputType,
         onSaved: onSaved,
         maxLength: maxLength,
+        focusNode: focusNode,
         autocorrect: autoCorrect,
         validator: validator,
         decoration: InputDecoration(

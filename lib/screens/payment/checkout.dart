@@ -9,32 +9,45 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
-class CheckoutScreen extends StatelessWidget {
+class CheckoutScreen extends StatefulWidget {
+  @override
+  _CheckoutScreenState createState() => _CheckoutScreenState();
+}
+
+class _CheckoutScreenState extends State<CheckoutScreen> {
   bool showBack = false;
+
+  final FocusNode node = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    node.addListener(_onFocusChange);
+  }
+
+  void _onFocusChange() {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
-    final node = FocusScope.of(context);
-    late FocusNode _focusNode;
-
     return Scaffold(
       appBar: AppBar(),
       body: SingleChildScrollView(
         child: Obx(
-            ()=> Column(
+          () => Column(
             children: [
-
-                CreditCard(
-                    cardNumber: CheckoutController.to.cardNumber.value ?? "",
-                    cardExpiry: CheckoutController.to.cardExpiry.value ?? "",
-                    cardHolderName:
-                        CheckoutController.to.cardHolderName.value ?? "",
-                    cvv: CheckoutController.to.cvv.value ?? "",
-                    showBackSide: false,
-                    frontBackground: CardBackgrounds.black,
-                    backBackground: CardBackgrounds.white,
-                    showShadow: true,
-                    textName: 'Name'),
+              CreditCard(
+                  cardNumber: CheckoutController.to.cardNumber.value ?? "",
+                  cardExpiry: CheckoutController.to.cardExpiry.value ?? "",
+                  cardHolderName:
+                      CheckoutController.to.cardHolderName.value ?? "",
+                  cvv: CheckoutController.to.cvv.value ?? "",
+                  showBackSide: node.hasFocus,
+                  frontBackground: CardBackgrounds.black,
+                  backBackground: CardBackgrounds.white,
+                  showShadow: true,
+                  textName: 'Name'),
               SizedBox(
                 height: Get.height * 0.05,
               ),
@@ -93,15 +106,19 @@ class CheckoutScreen extends StatelessWidget {
                       onChanged: (value) =>
                           CheckoutController.to.cvv.value = value,
                       textInputType: TextInputType.number,
+                      focusNode: node,
                       maxLength: 3,
                       errorText: CheckoutController.to.isCvvValid,
-
                       textInputAction: TextInputAction.done,
                       onEditingComplete: () => node.unfocus(),
                     ),
                   ),
                 ],
-              )
+              ),
+              SizedBox(
+                height: Get.height*0.1,
+              ),
+              ElevatedButton(onPressed: ()=> null, child: Text("PAY NOW"))
             ],
           ),
         ),

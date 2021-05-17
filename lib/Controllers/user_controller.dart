@@ -31,9 +31,9 @@ class UserController extends GetxController {
 
   Future<void> loadUser() async {
     final data = await _box.read("user");
-    final cookie = await _box.read("cookie") as String;
+    final cookie = await _box.read("cookie");
     if (data != null &&
-        Cookie.fromSetCookieValue(cookie).expires!.isAfter(DateTime.now())) {
+        Cookie.fromSetCookieValue(cookie as String).expires!.isAfter(DateTime.now())) {
       _user.value = User.fromJson(data as Map<String, dynamic>);
       if (_user.value!.authenticatedItem != null) {
         userState.value = UserState.AUTHENTICATED;
