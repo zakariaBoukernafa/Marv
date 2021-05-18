@@ -15,6 +15,7 @@ Future<void> main()async{
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   runApp(GetMaterialApp(
+    debugShowCheckedModeBanner: false,
     theme: Themes.light,
     initialBinding: InitialBinding(),
     locale: LocalizationService.locale,
