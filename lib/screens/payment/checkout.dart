@@ -2,12 +2,15 @@ import 'package:awesome_card/credit_card.dart';
 import 'package:awesome_card/style/card_background.dart';
 import 'package:ecommerce/Widgets/TextFields/custom_text_field.dart';
 import 'package:ecommerce/screens/payment/checkout_controller.dart';
+import 'package:ecommerce/theme/colors.dart';
+import 'package:ecommerce/utils/app_state.dart';
 import 'package:ecommerce/utils/card_input_formatter.dart';
 import 'package:ecommerce/utils/expiry_input_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:ecommerce/utils/extensions/strings.dart';
 
 class CheckoutScreen extends StatefulWidget {
   @override
@@ -48,6 +51,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   backBackground: CardBackgrounds.white,
                   showShadow: true,
                   textName: 'Name'),
+
               SizedBox(
                 height: Get.height * 0.05,
               ),
@@ -65,6 +69,12 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   textInputAction: TextInputAction.next,
                   onEditingComplete: () => node.nextFocus(),
                   errorText: CheckoutController.to.isCardValid),
+              Text(
+                CheckoutController.to.paymentError.value
+                    .filterPaymentErrorMessage() ??
+                    "",
+                style: const TextStyle(color: Colors.red),
+              ),
               CustomTextFormField(
                 labelText: "Card Holder",
                 hintText: "Aphelios Zoe",
@@ -116,9 +126,17 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 ],
               ),
               SizedBox(
-                height: Get.height*0.1,
+                height: Get.height * 0.1,
               ),
-              ElevatedButton(onPressed: ()=> null, child: Text("PAY NOW"))
+              ElevatedButton(
+                  onPressed: () => CheckoutController.to.createOrder(),
+                  child:
+                      CheckoutController.to.appState.value == AppState.LOADING
+                          ? const CircularProgressIndicator(
+                              backgroundColor: white,
+                            )
+                          : const Text("PAY NOW")),
+
             ],
           ),
         ),

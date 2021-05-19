@@ -39,6 +39,7 @@ dependencies:
   stripe_payment: ^1.1.0
   awesome_card: ^1.1.5
   credit_card_validator: ^2.0.0-nullsafety.0
+  flutter_dotenv: ^4.0.0-nullsafety.1
 
 
 dev_dependencies:
@@ -60,7 +61,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
-
+    - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

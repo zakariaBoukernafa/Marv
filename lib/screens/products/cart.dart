@@ -74,8 +74,14 @@ class _CartScreenState extends State<CartScreen> with SingleTickerProviderStateM
             () => AnimatedList(
               key: ProductsController.to.listKey,
               initialItemCount: ProductsController.to.cartItems.length,
+
               itemBuilder: (context, int index, Animation animation) {
-                return ProductsController.to.cartItems[index];
+                if(ProductsController.to.cartItems.isNotEmpty){
+                  return ProductsController.to.cartItems[index];
+                }
+                else {
+                  return Container();
+                }
               },
             ),
           )),

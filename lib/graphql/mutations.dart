@@ -52,3 +52,19 @@ const DELETE_PRODUCT_FROM_CART = r'''
 ''';
 
 
+// ignore: constant_identifier_names
+const CREATE_ORDER_MUTATION  = r'''
+ mutation CREATE_ORDER_MUTATION($token: String!) {
+    checkout(token: $token) {
+      id
+      charge
+      total
+      items {
+        id
+        name
+      }
+    }
+  }
+''';
+
+

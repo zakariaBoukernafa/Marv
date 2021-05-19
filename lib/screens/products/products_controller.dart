@@ -27,7 +27,6 @@ class ProductsController extends GetxController {
   }
 
   void getCartItems() {
-    print("refreshing cart items");
     if (UserController.to.userState.value == UserState.AUTHENTICATED) {
       cartItems.assignAll(UserController
           .to.user!.value!.authenticatedItem!.cart!
@@ -36,20 +35,16 @@ class ProductsController extends GetxController {
               index: UserController.to.user!.value!.authenticatedItem!.cart!
                   .indexOf(cartItem))));
       getCartCharge();
-      print(cartItems.length);
-
     }
   }
 
   void getCartCharge() {
-
-      cartCharge.value = UserController.to.user!.value!.authenticatedItem!.cart!
-          .fold(
-              0,
-              (num previousValue, cartItem) =>
-                  previousValue + cartItem.product!.price! * cartItem.quantity!)
-          .toInt();
-
+    cartCharge.value = UserController.to.user!.value!.authenticatedItem!.cart!
+        .fold(
+            0,
+            (num previousValue, cartItem) =>
+                previousValue + cartItem.product!.price! * cartItem.quantity!)
+        .toInt();
   }
 
   int getCartItemTotalPrice(Cart cartItem) {
@@ -57,7 +52,6 @@ class ProductsController extends GetxController {
   }
 
   Future<void> addToCart(Product product) async {
-
     try {
       appState.value = AppState.LOADING;
       await GqlController.to.httpClient
@@ -77,8 +71,8 @@ class ProductsController extends GetxController {
       cartCharge.value -= getCartItemTotalPrice(cartItems[index].cartItem);
       listKey.currentState!.removeItem(
           index,
-          (context, animation) =>
-              slidAnimation(context: context,animation: animation,child: cartItems[index]),
+          (context, animation) => slidAnimation(
+              context: context, animation: animation, child: cartItems[index]),
           duration: const Duration(milliseconds: 200));
 
       await GqlController.to.httpClient
