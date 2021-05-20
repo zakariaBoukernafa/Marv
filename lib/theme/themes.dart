@@ -88,7 +88,9 @@ class Themes {
     ),
     appBarTheme: const AppBarTheme(
       brightness: Brightness.light,
-       titleTextStyle: TextStyle(color: black),
+      centerTitle: true,
+
+      titleTextStyle: TextStyle(color: black),
       iconTheme: IconThemeData(),
       elevation: 0,
       actionsIconTheme: IconThemeData(),

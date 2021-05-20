@@ -27,7 +27,7 @@ Future<void> main()async{
     fallbackLocale: LocalizationService.fallbackLocale,
     translations: LocalizationService(),
     defaultTransition: Transition.fade,
-    transitionDuration: const Duration(milliseconds: 350),
+    transitionDuration: const Duration(milliseconds: 450),
     getPages: Pages.getPages,
     initialRoute: Routers.home,
   ));

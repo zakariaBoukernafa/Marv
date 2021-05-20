@@ -1,12 +1,10 @@
 import 'package:ecommerce/Services/format_money.dart';
-import 'package:ecommerce/Widgets/Appbars/app_bar.dart';
 import 'package:ecommerce/routes/routers.dart';
 import 'package:ecommerce/screens/products/products_controller.dart';
 import 'package:ecommerce/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 class CartScreen extends StatefulWidget {
   @override
@@ -55,7 +53,7 @@ class _CartScreenState extends State<CartScreen> with SingleTickerProviderStateM
       ),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,
-      appBar: appBar(
+      appBar: AppBar(
         title: const Text('Shopping Cart', style: TextStyle(color: black)),
         actions: [
           Builder(
@@ -66,7 +64,7 @@ class _CartScreenState extends State<CartScreen> with SingleTickerProviderStateM
             ),
           ),
         ],
-      ) as PreferredSizeWidget?,
+      ),
       body: Padding(
           padding: EdgeInsets.only(
               left: 16.0, right: 16.0, top: 16.0, bottom: Get.height * 0.15),

@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:ecommerce/Controllers/user_controller.dart';
 import 'package:ecommerce/Screens/Home/Dashboard/dashboard_controller.dart';
-import 'package:ecommerce/Widgets/Appbars/app_bar.dart';
 import 'package:ecommerce/Widgets/Containers/category_div.dart';
 import 'package:ecommerce/Widgets/Containers/presentation_item.dart';
 import 'package:ecommerce/Widgets/Lists/horizontal_scrollable_list.dart';
@@ -38,7 +37,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     DashboardController.to.getProducts();
     final TextTheme style = Theme.of(context).textTheme;
     return Scaffold(
-        appBar: appBar(
+        appBar: AppBar(
           title: Text(
             'store'.tr,
             style: const TextStyle(color: black),
@@ -52,7 +51,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
             ),
           ],
-        ) as PreferredSizeWidget?,
+        ),
         drawer: const Drawer(),
         endDrawer: const Drawer(),
         body: Padding(

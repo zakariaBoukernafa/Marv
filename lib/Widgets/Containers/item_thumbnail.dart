@@ -26,7 +26,7 @@ class ItemThumbnail extends StatelessWidget {
               Flexible(
                   flex: 6,
                   child: Hero(
-                      tag:product.photo!.image!.publicUrlTransformed! as String,
+                      tag:product.photo!.image!.publicUrlTransformed!,
 
                       child: Image.network(product.photo!.image!.publicUrlTransformed!,fit: BoxFit.cover,))),
               Flexible(flex:2,child:Text(

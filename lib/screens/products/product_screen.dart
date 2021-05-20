@@ -1,5 +1,4 @@
 import 'package:ecommerce/Services/format_money.dart';
-import 'package:ecommerce/Widgets/Appbars/app_bar.dart';
 import 'package:ecommerce/Widgets/Containers/product_preview.dart';
 import 'package:ecommerce/models/product.dart';
 import 'package:ecommerce/screens/products/products_controller.dart';
@@ -20,17 +19,19 @@ class ProductScreen extends StatefulWidget {
 
 class _ProductScreenState extends State<ProductScreen> {
   late final product;
-    @override
+
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    product  = Get.arguments;
+    product = Get.arguments;
   }
+
   @override
   Widget build(BuildContext context) {
     final TextTheme style = Theme.of(context).textTheme;
     return Scaffold(
-      appBar: appBar(
+      appBar: AppBar(
         actions: [
           Builder(
             builder: (context) => IconButton(
@@ -42,9 +43,20 @@ class _ProductScreenState extends State<ProductScreen> {
             ),
           ),
         ],
-      ) as PreferredSizeWidget?,
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            );
+          },
+        ),
+      ),
+      endDrawer: const Drawer(),
       floatingActionButton: Obx(
-        ()=> ElevatedButton(
+        () => ElevatedButton(
           onPressed: () async {
             if (ProductsController.to.appState.value != AppState.LOADING) {
               await ProductsController.to.addToCart(product as Product);
@@ -55,7 +67,9 @@ class _ProductScreenState extends State<ProductScreen> {
             }
           },
           child: ProductsController.to.appState.value == AppState.LOADING
-              ? const CircularProgressIndicator(backgroundColor: white,)
+              ? const CircularProgressIndicator(
+                  backgroundColor: white,
+                )
               : const Text('add To Cart'),
         ),
       ),
@@ -98,7 +112,7 @@ class _ProductScreenState extends State<ProductScreen> {
                         children: [
                           Hero(
                             tag: product.photo!.image!.publicUrlTransformed!
-                            as String,
+                                as String,
                             child: ProductPreview(
                               child: Image.network(
                                 product.photo!.image!.publicUrlTransformed!
