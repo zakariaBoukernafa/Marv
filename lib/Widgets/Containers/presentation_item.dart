@@ -46,15 +46,10 @@ class _PresentationItemState extends State<PresentationItem> {
                           flex: 5,
                           child: Align(
                               alignment: Alignment.bottomLeft,
-                              child: Hero(
-                                tag: widget.product.name!,
-                                child: Material(
-                                  child: Text(
-                                    widget.product.name!,
-                                    style: style.headline4!.copyWith(
-                                        color: isTapped ? black : green),
-                                  ),
-                                ),
+                              child: Text(
+                                widget.product.name!,
+                                style: style.headline4!.copyWith(
+                                    color: isTapped ? black : green),
                               ))),
                       const Flexible(
                           flex: 4,

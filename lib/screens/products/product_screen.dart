@@ -1,10 +1,13 @@
+import 'package:ecommerce/Controllers/user_controller.dart';
 import 'package:ecommerce/Services/format_money.dart';
 import 'package:ecommerce/Widgets/Containers/product_preview.dart';
+import 'package:ecommerce/Widgets/Containers/sign_popup.dart';
 import 'package:ecommerce/models/product.dart';
 import 'package:ecommerce/screens/products/products_controller.dart';
 import 'package:ecommerce/theme/colors.dart';
 import 'package:ecommerce/utils/app_state.dart';
 import 'package:ecommerce/utils/auth_guard.dart';
+import 'package:ecommerce/utils/user_state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -37,7 +40,12 @@ class _ProductScreenState extends State<ProductScreen> {
             builder: (context) => IconButton(
               icon: const Icon(CupertinoIcons.shopping_cart),
               onPressed: () {
-                Scaffold.of(context).openEndDrawer();
+                    if(UserController.to.userState.value == UserState.AUTHENTICATED) {
+                  Scaffold.of(context).openEndDrawer();
+                }
+                else{
+                  Get.dialog(SignPopup());
+                }
               },
               tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
             ),
