@@ -26,7 +26,7 @@ class DashboardController extends GetxController {
       appState.value = AppState.DONE;
     } catch (e) {
       //todo: remove on production
-     // print(e);
+      print(e);
     }
   }
 }

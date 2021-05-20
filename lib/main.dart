@@ -19,6 +19,7 @@ Future<void> main()async{
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   runApp(GetMaterialApp(
+
     debugShowCheckedModeBanner: false,
     theme: Themes.light,
     initialBinding: InitialBinding(),
@@ -26,7 +27,7 @@ Future<void> main()async{
     fallbackLocale: LocalizationService.fallbackLocale,
     translations: LocalizationService(),
     defaultTransition: Transition.fade,
-    transitionDuration: const Duration(milliseconds: 250),
+    transitionDuration: const Duration(milliseconds: 350),
     getPages: Pages.getPages,
     initialRoute: Routers.home,
   ));

@@ -1,5 +1,6 @@
 import 'package:ecommerce/theme/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -7,7 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 class Themes {
    static final light = ThemeData.light().copyWith(
     brightness: Brightness.light,
-    primaryColor: white,
+    primaryColor: greyLight2,
     accentColor: green,
     indicatorColor: green,
     tabBarTheme: TabBarTheme(
@@ -92,6 +93,8 @@ class Themes {
       elevation: 0,
       actionsIconTheme: IconThemeData(),
       textTheme: TextTheme(),
+      backgroundColor: green,
+
 
     ),
   );

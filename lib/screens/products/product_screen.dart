@@ -35,7 +35,9 @@ class _ProductScreenState extends State<ProductScreen> {
           Builder(
             builder: (context) => IconButton(
               icon: const Icon(CupertinoIcons.shopping_cart),
-              onPressed: () => Scaffold.of(context).openEndDrawer(),
+              onPressed: () {
+                Scaffold.of(context).openEndDrawer();
+              },
               tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
             ),
           ),
@@ -94,11 +96,15 @@ class _ProductScreenState extends State<ProductScreen> {
                     child: TabBarView(children: [
                       Column(
                         children: [
-                          ProductPreview(
-                            child: Image.network(
-                              product.photo!.image!.publicUrlTransformed!
-                                  as String,
-                              fit: BoxFit.cover,
+                          Hero(
+                            tag: product.photo!.image!.publicUrlTransformed!
+                            as String,
+                            child: ProductPreview(
+                              child: Image.network(
+                                product.photo!.image!.publicUrlTransformed!
+                                    as String,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                           SizedBox(
