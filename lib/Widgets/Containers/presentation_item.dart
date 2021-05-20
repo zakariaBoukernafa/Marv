@@ -5,10 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PresentationItem extends StatefulWidget {
+  final Product product;
 
-  final Product product ;
-  const PresentationItem(
-      {required this.product});
+  const PresentationItem({required this.product});
 
   @override
   _PresentationItemState createState() => _PresentationItemState();
@@ -35,7 +34,7 @@ class _PresentationItemState extends State<PresentationItem> {
               setState(() {
                 isTapped = true;
               });
-              Get.toNamed(Routers.product,arguments: widget.product);
+              Get.toNamed(Routers.product, arguments: widget.product);
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -47,10 +46,15 @@ class _PresentationItemState extends State<PresentationItem> {
                           flex: 5,
                           child: Align(
                               alignment: Alignment.bottomLeft,
-                              child: Text(
-                                widget.product.name!,
-                                style: style.headline4!.copyWith(
-                                    color: isTapped ? black : green),
+                              child: Hero(
+                                tag: widget.product.name!,
+                                child: Material(
+                                  child: Text(
+                                    widget.product.name!,
+                                    style: style.headline4!.copyWith(
+                                        color: isTapped ? black : green),
+                                  ),
+                                ),
                               ))),
                       const Flexible(
                           flex: 4,
@@ -65,9 +69,9 @@ class _PresentationItemState extends State<PresentationItem> {
                 ),
                 Flexible(
                     child: Image.network(
-                     widget.product.photo!.image!.publicUrlTransformed!,
-                      fit: BoxFit.cover,
-                    ))
+                  widget.product.photo!.image!.publicUrlTransformed!,
+                  fit: BoxFit.cover,
+                ))
               ],
             ),
           )),

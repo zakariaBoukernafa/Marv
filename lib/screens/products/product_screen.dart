@@ -82,14 +82,22 @@ class _ProductScreenState extends State<ProductScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  FormatMoney().format(product.price! as int),
-                  style: style.headline6!.copyWith(color: green),
+                Hero(
+                  tag: FormatMoney().format(product.price! as int),
+                  child: Text(
+                    FormatMoney().format(product.price! as int),
+                    style: style.headline6!.copyWith(color: green),
+                  ),
                 ),
-                Text(
-                  product.name! as String,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 36.0),
+                Hero(
+                  tag:product.name! as String,
+                  child: Material(
+                    child: Text(
+                      product.name! as String,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 36.0),
+                    ),
+                  ),
                 ),
                 const TabBar(
                     indicatorPadding: EdgeInsets.symmetric(horizontal: 40),

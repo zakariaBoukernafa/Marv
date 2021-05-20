@@ -16,29 +16,43 @@ class ItemThumbnail extends StatelessWidget {
 
     return Center(
       child: GestureDetector(
-        onTap: () => Get.toNamed(Routers.product,arguments: product) ,
+        onTap: () => Get.toNamed(Routers.product, arguments: product),
         child: Container(
           color: greyLight1,
-          width: Get.width*0.4,
-          height: Get.width*0.5,
+          width: Get.width * 0.4,
+          height: Get.width * 0.5,
           child: Column(
             children: [
               Flexible(
                   flex: 6,
                   child: Hero(
-                      tag:product.photo!.image!.publicUrlTransformed!,
-
-                      child: Image.network(product.photo!.image!.publicUrlTransformed!,fit: BoxFit.cover,))),
-              Flexible(flex:2,child:Text(
-                product.name!,
-                style: style.bodyText2,
-              ),),
-              Flexible(flex:2,child: Text(
-                FormatMoney().format( product.price!),
-                style: style.caption!.copyWith(
-                    fontWeight: FontWeight.bold, color: black),
-              ))
-
+                      tag: product.photo!.image!.publicUrlTransformed!,
+                      child: Image.network(
+                        product.photo!.image!.publicUrlTransformed!,
+                        fit: BoxFit.cover,
+                      ))),
+              Flexible(
+                flex: 2,
+                child: Hero(
+                  tag: product.name!,
+                  child: Material(
+                    child: Text(
+                      product.name!,
+                      style: style.bodyText2,
+                    ),
+                  ),
+                ),
+              ),
+              Flexible(
+                  flex: 2,
+                  child: Hero(
+                    tag: FormatMoney().format(product.price!),
+                    child: Text(
+                      FormatMoney().format(product.price!),
+                      style: style.caption!
+                          .copyWith(fontWeight: FontWeight.bold, color: black),
+                    ),
+                  ))
             ],
           ),
         ),
