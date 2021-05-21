@@ -8,7 +8,8 @@ import 'package:google_fonts/google_fonts.dart';
 class Themes {
    static final light = ThemeData.light().copyWith(
     brightness: Brightness.light,
-    primaryColor: greyLight2,
+    splashColor: green,
+    primaryColor: white,
     accentColor: green,
     indicatorColor: green,
     tabBarTheme: TabBarTheme(

@@ -7,6 +7,7 @@ import 'package:ecommerce/Widgets/Lists/horizontal_scrollable_list.dart';
 import 'package:ecommerce/Widgets/Lists/items_gallery.dart';
 import 'package:ecommerce/Widgets/TextFields/sarch_text_field.dart';
 import 'package:ecommerce/Widgets/buttons/radio_button.dart';
+import 'package:ecommerce/Widgets/drawers/drawer.dart';
 import 'package:ecommerce/models/product.dart';
 import 'package:ecommerce/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
@@ -52,7 +53,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
           ],
         ),
-        drawer: const Drawer(),
+        drawer:  CustomDrawer(),
         endDrawer: const Drawer(),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
