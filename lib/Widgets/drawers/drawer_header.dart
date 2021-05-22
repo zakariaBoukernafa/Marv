@@ -23,7 +23,7 @@ class CustomDrawerHeader extends StatelessWidget {
             height: 16,
           ),
           Text(
-            UserController.to.user!.value!.authenticatedItem!.name!,
+            UserController.to.user!.value!.authenticatedItem!.name ?? "",
             style: style.headline4,
           )
         ],

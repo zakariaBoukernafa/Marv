@@ -6,6 +6,7 @@ import 'package:ecommerce/graphql/mutations.dart';
 import 'package:ecommerce/models/cart.dart';
 import 'package:ecommerce/models/product.dart';
 import 'package:ecommerce/utils/app_state.dart';
+import 'package:ecommerce/utils/cart_drawer_guard.dart';
 import 'package:ecommerce/utils/user_state.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,6 +29,8 @@ class ProductsController extends GetxController {
 
   void getCartItems() {
     if (UserController.to.userState.value == UserState.AUTHENTICATED) {
+      print("getting cart items");
+
       cartItems.assignAll(UserController
           .to.user!.value!.authenticatedItem!.cart!
           .map((cartItem) => CartItem(
@@ -51,7 +54,7 @@ class ProductsController extends GetxController {
     return cartItem.quantity! * cartItem.product!.price!;
   }
 
-  Future<void> addToCart(Product product) async {
+  Future<void> addToCart(Product product,{GlobalKey<ScaffoldState>? cartKey}) async {
     try {
       appState.value = AppState.LOADING;
       await GqlController.to.httpClient
@@ -59,7 +62,10 @@ class ProductsController extends GetxController {
         "id": product.id!.toString(),
       });
       await UserController.to.fetchCurrentUser();
+      cartKey!.currentState!.openEndDrawer();
+
       appState.value = AppState.DONE;
+
     } catch (e) {
       print(e);
     }

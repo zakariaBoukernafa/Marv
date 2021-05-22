@@ -21,7 +21,7 @@ class Pages {
     GetPage(
       name: Routers.home,
       page: () => Home(),
-      binding: DashboardBinding(),
+      bindings: [DashboardBinding(),CartBinding(),],
     ),
     GetPage(
       name: Routers.login,
@@ -35,7 +35,7 @@ class Pages {
     GetPage(
       name: Routers.product,
       page: () => ProductScreen(),
-      bindings: [ AuthBinding(),CartBinding(),]
+      binding: AuthBinding()
     ),
     GetPage(
       name: Routers.cart,

@@ -43,10 +43,11 @@ class LoginController extends GetxController {
             res.data!["authenticateUserWithPassword"]["message"] as String);
       }
       authenticatedItem.value = AuthItem.fromJson(res.data!);
-     await UserController.to.fetchCurrentUser();
-      UserController.to.saveUser();
+      await UserController.to.saveUser();
+      await UserController.to.fetchCurrentUser();
       appState.value = AppState.DONE;
       buttonState.value = ButtonState.success;
+      Get.back();
     } on AuthenticationException catch (e) {
       appState.value = AppState.ERROR;
       buttonState.value = ButtonState.fail;

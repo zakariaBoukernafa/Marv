@@ -51,12 +51,11 @@ class SignPopup extends StatelessWidget {
                   onPressed: () async => Get.toNamed(Routers.login),
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(black),
-
                 ),
                   child: const Text("LOG IN"),
               ),
             ],
           ),
-        ));
+        ),);
   }
 }

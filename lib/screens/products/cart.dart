@@ -7,6 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CartScreen extends StatefulWidget {
+  final bool disableAppbar;
+
+  const CartScreen({this.disableAppbar=false});
+
   @override
   _CartScreenState createState() => _CartScreenState();
 }
@@ -53,7 +57,7 @@ class _CartScreenState extends State<CartScreen> with SingleTickerProviderStateM
       ),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,
-      appBar: AppBar(
+      appBar: widget.disableAppbar ? null:AppBar(
         title: const Text('Shopping Cart', style: TextStyle(color: black)),
         actions: [
           Builder(

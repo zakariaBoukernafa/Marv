@@ -51,9 +51,8 @@ const DELETE_PRODUCT_FROM_CART = r'''
   }
 ''';
 
-
 // ignore: constant_identifier_names
-const CREATE_ORDER_MUTATION  = r'''
+const CREATE_ORDER_MUTATION = r'''
  mutation CREATE_ORDER_MUTATION($token: String!) {
     checkout(token: $token) {
       id
@@ -67,4 +66,9 @@ const CREATE_ORDER_MUTATION  = r'''
   }
 ''';
 
-
+// ignore: constant_identifier_names, unnecessary_raw_strings
+const SIGNOUT_MUTATION = r'''
+  mutation SIGNOUT_MUTATION {
+    endSession
+  }
+''';

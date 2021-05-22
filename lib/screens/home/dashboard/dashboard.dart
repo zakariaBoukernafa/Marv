@@ -7,9 +7,11 @@ import 'package:ecommerce/Widgets/Lists/horizontal_scrollable_list.dart';
 import 'package:ecommerce/Widgets/Lists/items_gallery.dart';
 import 'package:ecommerce/Widgets/TextFields/sarch_text_field.dart';
 import 'package:ecommerce/Widgets/buttons/radio_button.dart';
+import 'package:ecommerce/Widgets/drawers/cart_drawer.dart';
 import 'package:ecommerce/Widgets/drawers/drawer.dart';
 import 'package:ecommerce/models/product.dart';
 import 'package:ecommerce/theme/colors.dart';
+import 'package:ecommerce/utils/cart_drawer_guard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -46,15 +48,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
           actions: [
             Builder(
               builder: (context) => IconButton(
-                icon: const Icon(CupertinoIcons.bell_solid),
-                onPressed: () => Scaffold.of(context).openEndDrawer(),
+                icon: const Icon(CupertinoIcons.cart),
+                onPressed: () => openCartDrawer(context),
                 tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
               ),
             ),
           ],
         ),
         drawer:  CustomDrawer(),
-        endDrawer: const Drawer(),
+        endDrawer:  CartDrawer(),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
