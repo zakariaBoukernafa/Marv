@@ -9,24 +9,64 @@ class DashboardController extends GetxController {
   final appState = Rx<AppState>(AppState.IDLE);
   final RxList products = RxList();
 
-
-
   Future<void> getProducts() async {
     try {
       appState.value = AppState.LOADING;
-      final res = await GqlController.to.httpClient
-          .post(gql: ALL_PRODUCTS_QUERY);
+      final res =
+          await GqlController.to.httpClient.post(gql: ALL_PRODUCTS_QUERY);
       final dynamic productsList = res.data!["allProducts"];
       final List<Product> products = [];
-        productsList.forEach((element) {
-          products.add(Product.fromJson(element as Map<String, dynamic>));
-        });
-        this.products.value = products;
+      productsList.forEach((element) {
+        products.add(Product.fromJson(element as Map<String, dynamic>));
+      });
+      this.products.value = products;
 
       appState.value = AppState.DONE;
     } catch (e) {
       //todo: remove on production
       print(e);
     }
+  }
+
+  Future<Product?> getSingleProduct({required String id}) async {
+    try {
+      appState.value = AppState.LOADING;
+      final res =
+          await GqlController.to.httpClient.post(gql: ALL_PRODUCTS_QUERY);
+      final dynamic productString = res.data!["Product"];
+
+      return Product.fromJson(productString as Map<String, dynamic>);
+
+      appState.value = AppState.DONE;
+    } catch (e) {
+      //todo: remove on production
+      print(e);
+    }
+  }
+
+  Future<List<Product>> searchProducts({required String searchTerm}) async {
+    final List<Product> products = [];
+    print("searching for : $searchTerm");
+    try {
+      appState.value = AppState.LOADING;
+      final res = await GqlController.to.httpClient.post(
+        gql: SEARCH_PRODUCTS_QUERY,
+        variables: {
+          "searchTerm": searchTerm,
+        },
+      );
+
+      final dynamic productsList = res.data!["searchTerms"];
+      productsList.forEach((element) {
+        products.add(Product.fromJson(element as Map<String, dynamic>));
+      });
+      appState.value = AppState.DONE;
+      return products;
+
+    } catch (e) {
+      //todo: remove on production
+      print(e);
+    }
+    return [];
   }
 }

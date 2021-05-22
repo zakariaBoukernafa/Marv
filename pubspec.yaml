@@ -40,7 +40,7 @@ dependencies:
   awesome_card: ^1.1.5
   credit_card_validator: ^2.0.0-nullsafety.0
   flutter_dotenv: ^4.0.0-nullsafety.1
-  restart_app: ^1.0.3
+  flutter_typeahead: ^3.1.3
 
 
 

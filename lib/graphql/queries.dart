@@ -43,3 +43,43 @@ const String ALL_PRODUCTS_QUERY = r'''
     }
   }
 ''';
+
+const SEARCH_PRODUCTS_QUERY = r'''
+query SEARCH_PRODUCTS_QUERY($searchTerm: String!) {
+    searchTerms: allProducts(
+      where: {
+        OR: [
+          { name_contains_i: $searchTerm }
+          { description_contains_i: $searchTerm }
+        ]
+      }
+    ) {
+      id
+      name
+      description
+      photo {
+        image {
+          publicUrlTransformed
+        }
+      }
+    }
+  }
+  
+''';
+
+const SINGLE_ITEM_QUERY  = r'''
+ query SINGLE_ITEM_QUERY($id: ID!) {
+    Product(where: { id: $id }) {
+      id
+      name
+      description
+      price
+      photo {
+        altText
+        image {
+          publicUrlTransformed
+        }
+      }
+    }
+  }
+''';

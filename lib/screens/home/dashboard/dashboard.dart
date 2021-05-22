@@ -1,10 +1,9 @@
 import 'dart:math';
 import 'package:ecommerce/Controllers/user_controller.dart';
-import 'package:ecommerce/Screens/Home/Dashboard/dashboard_controller.dart';
 import 'package:ecommerce/Widgets/Containers/category_div.dart';
 import 'package:ecommerce/Widgets/Containers/presentation_item.dart';
+import 'package:ecommerce/Widgets/Lists/grid_gallery.dart';
 import 'package:ecommerce/Widgets/Lists/horizontal_scrollable_list.dart';
-import 'package:ecommerce/Widgets/Lists/items_gallery.dart';
 import 'package:ecommerce/Widgets/TextFields/sarch_text_field.dart';
 import 'package:ecommerce/Widgets/buttons/radio_button.dart';
 import 'package:ecommerce/Widgets/drawers/cart_drawer.dart';
@@ -15,6 +14,8 @@ import 'package:ecommerce/utils/cart_drawer_guard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'dashboard_controller.dart';
 
 class DashboardScreen extends StatefulWidget {
   @override
@@ -119,7 +120,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   ),
                 ),
                 Obx(
-                  () => ItemsGallery(
+                  () => GridGallery(
                     products: DashboardController.to.products,
                     state: DashboardController.to.appState.value,
                   ),

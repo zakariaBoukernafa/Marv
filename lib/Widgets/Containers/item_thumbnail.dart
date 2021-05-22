@@ -17,8 +17,7 @@ class ItemThumbnail extends StatelessWidget {
     return Center(
       child: GestureDetector(
         onTap: () => Get.toNamed(Routers.product, arguments: product),
-        child: Container(
-          color: greyLight1,
+        child: SizedBox(
           width: Get.width * 0.4,
           height: Get.width * 0.5,
           child: Column(

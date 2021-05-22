@@ -29,4 +29,5 @@ class Product {
     }
     return data;
   }
+
 }

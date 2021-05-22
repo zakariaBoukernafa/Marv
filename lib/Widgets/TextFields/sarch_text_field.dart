@@ -1,7 +1,10 @@
+import 'package:ecommerce/models/product.dart';
+import 'package:ecommerce/screens/home/dashboard/dashboard_controller.dart';
 import 'package:ecommerce/theme/styles.dart';
 import 'package:ecommerce/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 class SearchTextField extends StatelessWidget {
   final TextEditingController myController = TextEditingController();
@@ -22,7 +25,8 @@ class SearchTextField extends StatelessWidget {
   final Widget? suffixIcon;
   final String? labelText;
 
-  SearchTextField({this.filled = true,
+  SearchTextField({
+    this.filled = true,
     this.labelText,
     this.fillColor = white,
     this.validator,
@@ -37,27 +41,48 @@ class SearchTextField extends StatelessWidget {
     this.suffix,
     this.prefix,
     this.prefixIcon,
-    this.suffixIcon,});
+    this.suffixIcon,
+  });
 
   @override
   Widget build(BuildContext context) {
-    const label = "Some Label";
-    const dummyList = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5'];
-
-    return  TextField( controller: myController,decoration: InputDecoration(
-      filled: filled,
-      fillColor: fillColor,
-      prefix: prefix,
-      prefixIcon: prefixIcon,
-      suffixIcon: suffixIcon,
-      suffix: suffix,
-      hintText: hintText,
-      errorText: errorText,
-      labelText: labelText,
-      hintStyle: inputFieldHintTextStyle,
-      focusedBorder: inputFieldFocusedBorderStyle,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
-      enabledBorder: inputFieldDefaultBorderStyle,
-    ),);
+    return TypeAheadField(
+      textFieldConfiguration: TextFieldConfiguration(
+        controller: myController,
+        decoration: InputDecoration(
+          filled: filled,
+          fillColor: fillColor,
+          prefix: prefix,
+          prefixIcon: prefixIcon,
+          suffixIcon: suffixIcon,
+          suffix: suffix,
+          hintText: hintText,
+          errorText: errorText,
+          labelText: labelText,
+          hintStyle: inputFieldHintTextStyle,
+          focusedBorder: inputFieldFocusedBorderStyle,
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
+          enabledBorder: inputFieldDefaultBorderStyle,
+        ),
+      )
+      suggestionsCallback: (pattern) async {
+        print("trying to get suggesions :$pattern");
+        return await DashboardController.to.searchProducts(searchTerm: pattern);
+      },
+      itemBuilder: (context, Product product) {
+        return ListTile(
+          leading: Image.network(
+            product.photo!.image!.publicUrlTransformed!,
+            fit: BoxFit.cover,
+          ),
+          title: Text(product.name!),
+          subtitle: Text(product.description!),
+        );
+      },
+      onSuggestionSelected: (Product product) {
+        print(product.name);
+      },
+    );
   }
 }

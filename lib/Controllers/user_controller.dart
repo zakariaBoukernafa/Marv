@@ -10,7 +10,6 @@ import 'package:ecommerce/utils/user_state.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:graphql_flutter/graphql_flutter.dart' as gql;
-import 'package:restart_app/restart_app.dart';
 
 class UserController extends GetxController {
   static UserController get to => Get.find();
