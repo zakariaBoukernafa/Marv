@@ -1,5 +1,3 @@
-
-
 import 'package:ecommerce/theme/styles.dart';
 import 'package:ecommerce/theme/colors.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +63,7 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 16),
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
       child: TextFormField(
         textInputAction: textInputAction,
         autovalidateMode: autoValidateMode,
@@ -95,10 +93,10 @@ class CustomTextFormField extends StatelessWidget {
           hintText: hintText,
           errorText: errorText,
           labelText: labelText,
-
           hintStyle: inputFieldHintTextStyle,
           focusedBorder: inputFieldFocusedBorderStyle,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
           enabledBorder: inputFieldDefaultBorderStyle,
         ),
       ),

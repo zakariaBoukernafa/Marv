@@ -1,11 +1,14 @@
 
 import 'package:ecommerce/models/product.dart';
+import 'package:ecommerce/routes/routers.dart';
+import 'package:ecommerce/screens/Home/dashboard/dashboard_controller.dart';
 import 'package:ecommerce/screens/products/products_controller.dart';
 import 'package:ecommerce/theme/styles.dart';
 import 'package:ecommerce/theme/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:get/get.dart';
 
 
 class SearchTextField extends StatelessWidget {
@@ -69,8 +72,7 @@ class SearchTextField extends StatelessWidget {
         ),
       ),
       suggestionsCallback: (pattern) async {
-        print("trying to get suggesions :$pattern");
-         return ProductsController.to.searchProducts(searchTerm: pattern);
+         return DashboardController.to.searchProducts(searchTerm: pattern);
       },
       itemBuilder: (context, Product product) {
         return ListTile(
@@ -82,8 +84,10 @@ class SearchTextField extends StatelessWidget {
           subtitle: Text(product.description!),
         );
       },
-      onSuggestionSelected: (Product product) {
-        print(product.name);
+      onSuggestionSelected: (Product product) async{
+        final Product? selectedProduct = await DashboardController.to.getSingleProduct(id: product.id!);
+        print("price :${selectedProduct!.price}");
+        Get.toNamed(Routers.product,arguments: selectedProduct);
       },
     );
   }

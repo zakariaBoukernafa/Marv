@@ -32,12 +32,12 @@ class DashboardController extends GetxController {
     try {
       appState.value = AppState.LOADING;
       final res =
-          await GqlController.to.httpClient.post(gql: ALL_PRODUCTS_QUERY);
+          await GqlController.to.httpClient.post(gql: SINGLE_ITEM_QUERY,variables: {"id": id});
       final dynamic productString = res.data!["Product"];
+      print(productString);
+      appState.value = AppState.DONE;
 
       return Product.fromJson(productString as Map<String, dynamic>);
-
-      appState.value = AppState.DONE;
     } catch (e) {
       //todo: remove on production
       print(e);
