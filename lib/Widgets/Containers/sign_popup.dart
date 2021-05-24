@@ -25,7 +25,11 @@ class SignPopup extends StatelessWidget {
           child: ListBody(
            children: <Widget>[
               ElevatedButton(
-                  onPressed: () async => Get.toNamed(Routers.signUp),
+                  onPressed: () async {
+                    Navigator.of(context, rootNavigator: true).pop('dialog');
+
+                    return Get.toNamed(Routers.signUp);
+                  },
                   child: const Text("SIGN UP FREE")),
               Row(children: <Widget>[
                 Expanded(
@@ -48,7 +52,11 @@ class SignPopup extends StatelessWidget {
                 ),
               ]),
               ElevatedButton(
-                  onPressed: () async => Get.toNamed(Routers.login),
+                  onPressed: () async {
+                    Navigator.of(context, rootNavigator: true).pop('dialog');
+
+                    return Get.toNamed(Routers.login);
+                  },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(black),
                 ),

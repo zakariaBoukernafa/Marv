@@ -30,7 +30,7 @@ class ProductsController extends GetxController {
 
   void getCartItems() {
     if (UserController.to.userState.value == UserState.AUTHENTICATED) {
-      print("getting cart items");
+
 
       cartItems.assignAll(UserController
           .to.user!.value!.authenticatedItem!.cart!

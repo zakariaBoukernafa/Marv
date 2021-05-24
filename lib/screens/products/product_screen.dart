@@ -2,6 +2,7 @@ import 'package:ecommerce/Controllers/user_controller.dart';
 import 'package:ecommerce/Services/format_money.dart';
 import 'package:ecommerce/Widgets/Containers/product_preview.dart';
 import 'package:ecommerce/Widgets/Containers/sign_popup.dart';
+import 'package:ecommerce/Widgets/animations/circular_indicator.dart';
 import 'package:ecommerce/Widgets/drawers/cart_drawer.dart';
 import 'package:ecommerce/models/product.dart';
 import 'package:ecommerce/screens/products/products_controller.dart';
@@ -29,7 +30,7 @@ class _ProductScreenState extends State<ProductScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
+
     super.initState();
     product = Get.arguments;
   }
@@ -67,14 +68,16 @@ class _ProductScreenState extends State<ProductScreen> {
         floatingActionButton: Obx(
           () => ElevatedButton(
             onPressed: () async {
+              if (UserController.to.userState.value != UserState.AUTHENTICATED) {
+              return  Get.dialog(SignPopup());
+              }
               if (ProductsController.to.appState.value != AppState.LOADING) {
                 await ProductsController.to
                     .addToCart(product as Product, cartKey: _scaffoldKey);
               }
             },
             child: ProductsController.to.appState.value == AppState.LOADING
-                ? const CircularProgressIndicator(
-                    backgroundColor: white,
+                ?  CircularIndicator(
                   )
                 : const Text('add To Cart'),
           ),

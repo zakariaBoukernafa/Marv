@@ -86,7 +86,6 @@ class SearchTextField extends StatelessWidget {
       },
       onSuggestionSelected: (Product product) async{
         final Product? selectedProduct = await DashboardController.to.getSingleProduct(id: product.id!);
-        print("price :${selectedProduct!.price}");
         Get.toNamed(Routers.product,arguments: selectedProduct);
       },
     );

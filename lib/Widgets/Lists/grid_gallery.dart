@@ -1,4 +1,5 @@
 import 'package:ecommerce/Widgets/Containers/item_thumbnail.dart';
+import 'package:ecommerce/Widgets/animations/circular_indicator.dart';
 import 'package:ecommerce/models/product.dart';
 import 'package:ecommerce/theme/colors.dart';
 import 'package:ecommerce/utils/app_state.dart';
@@ -26,7 +27,8 @@ class GridGallery extends StatelessWidget {
               return SizedBox(
                   width: Get.width * 0.4,
                   height: Get.width * 0.5,
-                  child: const Center(child: CircularProgressIndicator()));
+                  child:  Center(child: CircularIndicator()));
+
             } else {
               return ItemThumbnail(
                 product: products[index] as Product,

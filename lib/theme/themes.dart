@@ -9,8 +9,8 @@ class Themes {
    static final light = ThemeData.light().copyWith(
     brightness: Brightness.light,
     splashColor: green,
-    primaryColor: white,
-    accentColor: green,
+    primaryColor: green,
+    accentColor: white,
     indicatorColor: green,
     tabBarTheme: TabBarTheme(
         indicator: const BoxDecoration(

@@ -31,10 +31,9 @@ class DashboardController extends GetxController {
   Future<Product?> getSingleProduct({required String id}) async {
     try {
       appState.value = AppState.LOADING;
-      final res =
-          await GqlController.to.httpClient.post(gql: SINGLE_ITEM_QUERY,variables: {"id": id});
+      final res = await GqlController.to.httpClient
+          .post(gql: SINGLE_ITEM_QUERY, variables: {"id": id});
       final dynamic productString = res.data!["Product"];
-      print(productString);
       appState.value = AppState.DONE;
 
       return Product.fromJson(productString as Map<String, dynamic>);
