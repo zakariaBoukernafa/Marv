@@ -46,7 +46,7 @@ class DashboardController extends GetxController {
 
   Future<List<Product>> searchProducts({required String searchTerm}) async {
     final List<Product> products = [];
-    print("searching for : $searchTerm");
+
     try {
       appState.value = AppState.LOADING;
       final res = await GqlController.to.httpClient.post(
@@ -62,7 +62,6 @@ class DashboardController extends GetxController {
       });
       appState.value = AppState.DONE;
       return products;
-
     } catch (e) {
       //todo: remove on production
       print(e);

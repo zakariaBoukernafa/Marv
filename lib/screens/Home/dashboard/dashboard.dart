@@ -9,13 +9,13 @@ import 'package:ecommerce/Widgets/buttons/radio_button.dart';
 import 'package:ecommerce/Widgets/drawers/cart_drawer.dart';
 import 'package:ecommerce/Widgets/drawers/drawer.dart';
 import 'package:ecommerce/models/product.dart';
+import 'package:ecommerce/screens/Home/dashboard/dashboard_controller.dart';
 import 'package:ecommerce/theme/colors.dart';
 import 'package:ecommerce/utils/cart_drawer_guard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'dashboard_controller.dart';
 
 class DashboardScreen extends StatefulWidget {
   @override

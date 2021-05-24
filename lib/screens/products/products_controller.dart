@@ -3,6 +3,7 @@ import 'package:ecommerce/Controllers/user_controller.dart';
 import 'package:ecommerce/Widgets/Containers/cart_item.dart';
 import 'package:ecommerce/Widgets/animations/slide_animation.dart';
 import 'package:ecommerce/graphql/mutations.dart';
+import 'package:ecommerce/graphql/queries.dart';
 import 'package:ecommerce/models/cart.dart';
 import 'package:ecommerce/models/product.dart';
 import 'package:ecommerce/utils/app_state.dart';
@@ -91,5 +92,31 @@ class ProductsController extends GetxController {
     } catch (e) {
       print(e);
     }
+  }
+  Future<List<Product>> searchProducts({required String searchTerm}) async {
+
+    final List<Product> products = [];
+
+    try {
+      appState.value = AppState.LOADING;
+      final res = await GqlController.to.httpClient.post(
+        gql: SEARCH_PRODUCTS_QUERY,
+        variables: {
+          "searchTerm": searchTerm,
+        },
+      );
+
+      final dynamic productsList = res.data!["searchTerms"];
+      productsList.forEach((element) {
+        products.add(Product.fromJson(element as Map<String, dynamic>));
+      });
+      appState.value = AppState.DONE;
+      return products;
+
+    } catch (e) {
+      //todo: remove on production
+      print(e);
+    }
+    return [];
   }
 }

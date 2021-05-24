@@ -1,4 +1,4 @@
-import 'package:ecommerce/Screens/Home/Dashboard/dashboard_controller.dart';
+import 'package:ecommerce/screens/Home/dashboard/dashboard_controller.dart';
 import 'package:get/get.dart';
 class DashboardBinding extends Bindings {
   @override

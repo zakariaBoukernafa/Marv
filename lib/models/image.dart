@@ -4,6 +4,7 @@ class Image {
 
   Image({this.publicUrlTransformed});
 
+
   Image.fromJson(Map<String, dynamic> json) {
     publicUrlTransformed = json['publicUrlTransformed'] as String?;
   }
