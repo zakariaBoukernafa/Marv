@@ -1,7 +1,6 @@
 import 'package:ecommerce/Widgets/Containers/item_thumbnail.dart';
 import 'package:ecommerce/Widgets/animations/circular_indicator.dart';
 import 'package:ecommerce/models/product.dart';
-import 'package:ecommerce/theme/colors.dart';
 import 'package:ecommerce/utils/app_state.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

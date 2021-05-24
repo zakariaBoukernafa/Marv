@@ -100,6 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       failText: "Error",
                       function: LoginController.to.isFormValid
                           ? () => LoginController.to.signIn()
+                          // ignore: avoid_returning_null_for_void
                           : () => null,
                       loadingText: "loading",
                       state: LoginController.to.buttonState.value,

@@ -27,21 +27,24 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
-  get: ^4.1.4
-  google_fonts: ^2.0.0
-  progress_state_button: ^1.0.3
-  graphql_flutter: ^5.0.0-nullsafety.2
-  get_storage: ^2.0.2
-  gql_dio_link: ^0.1.0-nullsafety.1
-  dio: ^4.0.0
-  money2: ^2.0.2
-  stripe_payment: ^1.1.0
+
+  #UI
   awesome_card: ^1.1.5
-  credit_card_validator: ^2.0.0-nullsafety.0
+  cupertino_icons: ^1.0.2
   flutter_dotenv: ^4.0.0-nullsafety.1
   flutter_typeahead: ^3.1.3
+  google_fonts: ^2.0.0
+  progress_state_button: ^1.0.3
 
+  #Logic
+  credit_card_validator: ^2.0.0-nullsafet0
+  dio: ^4.0.0
+  get: ^4.1.4
+  get_storage: ^2.0.2
+  gql_dio_link: ^0.1.0-nullsafety.1
+  graphql_flutter: ^5.0.0-nullsafety.2
+  money2: ^2.0.2
+  stripe_payment: ^1.1.0
 
 
 dev_dependencies:

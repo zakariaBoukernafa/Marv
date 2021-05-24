@@ -2,14 +2,11 @@ import 'dart:async';
 import 'package:ecommerce/Controllers/gql_controller.dart';
 import 'package:ecommerce/Controllers/user_controller.dart';
 import 'package:ecommerce/Models/authenticated_item.dart';
-import 'package:ecommerce/Models/user.dart';
 import 'package:ecommerce/graphql/mutations.dart';
-import 'package:ecommerce/graphql/queries.dart';
 import 'package:ecommerce/utils/app_state.dart';
 import 'package:ecommerce/utils/exceptions.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:graphql_flutter/graphql_flutter.dart' as gql;
 import 'package:progress_state_button/progress_button.dart';
 
 class LoginController extends GetxController {

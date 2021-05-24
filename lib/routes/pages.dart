@@ -7,10 +7,8 @@ import 'package:ecommerce/Screens/Auth/SignUp/signup.dart';
 import 'package:ecommerce/Screens/Home/home.dart';
 import 'package:ecommerce/Screens/Products/cart.dart';
 import 'package:ecommerce/Screens/Products/product_screen.dart';
-
 import 'package:ecommerce/routes/routers.dart';
 import 'package:ecommerce/screens/payment/checkout.dart';
-import 'package:ecommerce/screens/payment/checkout_controller.dart';
 import 'package:get/get.dart';
 
 // ignore: avoid_classes_with_only_static_members
@@ -39,7 +37,7 @@ class Pages {
     ),
     GetPage(
       name: Routers.cart,
-      page: () => CartScreen(),
+      page: () => const CartScreen(),
 
     ),
     GetPage(

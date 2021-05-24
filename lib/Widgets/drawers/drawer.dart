@@ -1,8 +1,5 @@
 import 'package:ecommerce/Controllers/user_controller.dart';
 import 'package:ecommerce/Widgets/Containers/sign_popup.dart';
-import 'package:ecommerce/routes/routers.dart';
-import 'package:ecommerce/theme/colors.dart';
-import 'package:ecommerce/utils/app_state.dart';
 import 'package:ecommerce/utils/user_state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

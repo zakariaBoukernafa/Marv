@@ -8,14 +8,12 @@ import 'package:ecommerce/models/product.dart';
 import 'package:ecommerce/screens/products/products_controller.dart';
 import 'package:ecommerce/theme/colors.dart';
 import 'package:ecommerce/utils/app_state.dart';
-import 'package:ecommerce/utils/auth_guard.dart';
 import 'package:ecommerce/utils/cart_drawer_guard.dart';
 import 'package:ecommerce/utils/user_state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'cart.dart';
 
 class ProductScreen extends StatefulWidget {
   // ignore: type_annotate_public_apis
@@ -26,6 +24,7 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  // ignore: type_annotate_public_apis
   late final product;
 
   @override

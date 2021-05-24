@@ -44,6 +44,7 @@ const String ALL_PRODUCTS_QUERY = r'''
   }
 ''';
 
+// ignore: constant_identifier_names
 const SEARCH_PRODUCTS_QUERY = r'''
 query SEARCH_PRODUCTS_QUERY($searchTerm: String!) {
     searchTerms: allProducts(
@@ -67,6 +68,7 @@ query SEARCH_PRODUCTS_QUERY($searchTerm: String!) {
   
 ''';
 
+// ignore: constant_identifier_names
 const SINGLE_ITEM_QUERY  = r'''
  query SINGLE_ITEM_QUERY($id: ID!) {
     Product(where: { id: $id }) {
@@ -78,6 +80,32 @@ const SINGLE_ITEM_QUERY  = r'''
         altText
         image {
           publicUrlTransformed
+        }
+      }
+    }
+  }
+''';
+
+// ignore: constant_identifier_names, unnecessary_raw_strings
+const USER_ORDERS_QUERY   = r'''
+  query USER_ORDERS_QUERY {
+      allOrders {
+        id
+        charge
+        total
+        user {
+        id
+      }
+      items {
+        id
+        name
+        description
+        price
+        quantity
+        photo {
+          image {
+            publicUrlTransformed
+          }
         }
       }
     }

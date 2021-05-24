@@ -1,8 +1,6 @@
-
 import 'package:ecommerce/models/product.dart';
 import 'package:ecommerce/routes/routers.dart';
 import 'package:ecommerce/screens/Home/dashboard/dashboard_controller.dart';
-import 'package:ecommerce/screens/products/products_controller.dart';
 import 'package:ecommerce/theme/styles.dart';
 import 'package:ecommerce/theme/colors.dart';
 import 'package:flutter/material.dart';

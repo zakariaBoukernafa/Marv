@@ -3,7 +3,6 @@ import 'package:awesome_card/style/card_background.dart';
 import 'package:ecommerce/Widgets/TextFields/custom_text_field.dart';
 import 'package:ecommerce/Widgets/animations/circular_indicator.dart';
 import 'package:ecommerce/screens/payment/checkout_controller.dart';
-import 'package:ecommerce/theme/colors.dart';
 import 'package:ecommerce/utils/app_state.dart';
 import 'package:ecommerce/utils/card_input_formatter.dart';
 import 'package:ecommerce/utils/expiry_input_formatter.dart';
