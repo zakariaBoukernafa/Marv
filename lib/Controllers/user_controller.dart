@@ -46,7 +46,6 @@ class UserController extends GetxController {
         userState.value = UserState.UNAUTHENTICATED;
       }
     }
-    print(userState.value);
   }
 
   Future<void> fetchCurrentUser() async {

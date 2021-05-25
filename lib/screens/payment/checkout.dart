@@ -133,7 +133,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     onPressed: () => CheckoutController.to.createOrder(),
                     child:
                         CheckoutController.to.appState.value == AppState.LOADING
-                            ?  CircularIndicator(
+                            ?  const CircularIndicator(
                               )
                             : const Text("PAY NOW")),
 

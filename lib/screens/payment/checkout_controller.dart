@@ -2,6 +2,7 @@ import 'package:credit_card_validator/credit_card_validator.dart';
 import 'package:ecommerce/Controllers/gql_controller.dart';
 import 'package:ecommerce/Controllers/user_controller.dart';
 import 'package:ecommerce/graphql/mutations.dart';
+import 'package:ecommerce/routes/routers.dart';
 import 'package:ecommerce/theme/colors.dart';
 import 'package:ecommerce/utils/app_state.dart';
 import 'package:flutter/cupertino.dart';
@@ -60,9 +61,11 @@ class CheckoutController extends GetxController {
           variables: {"token": _paymentMethod.id!},
         ).then((value) async {
           await UserController.to.fetchCurrentUser();
-          Get.back();
+          await Get.offAndToNamed(Routers.orders);
+
           Get.snackbar("Sucess", "Order proceeded successfully",
               colorText: white, backgroundColor: green,margin: const EdgeInsets.only(top: 24.0));
+
         });
         clearForms();
         appState.value = AppState.DONE;
