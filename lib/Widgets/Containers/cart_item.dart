@@ -1,4 +1,4 @@
-import 'package:ecommerce/Services/format_money.dart';
+import 'package:ecommerce/utils/extensions/integers.dart';
 import 'package:ecommerce/Widgets/buttons/counter_button.dart';
 import 'package:ecommerce/models/cart.dart';
 import 'package:ecommerce/screens/products/products_controller.dart';
@@ -31,7 +31,7 @@ class CartItem extends StatelessWidget {
                  Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: Text(
-                    FormatMoney().format(cartItem.product!.price!),
+                    cartItem.product!.price!.formatMoney(),
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),

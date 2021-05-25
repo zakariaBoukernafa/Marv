@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:ecommerce/Controllers/user_controller.dart';
+import 'package:ecommerce/Widgets/Appbars/app_bar.dart';
 import 'package:ecommerce/Widgets/Containers/category_div.dart';
 import 'package:ecommerce/Widgets/Containers/presentation_item.dart';
 import 'package:ecommerce/Widgets/Lists/grid_gallery.dart';
@@ -41,21 +42,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     DashboardController.to.getProducts();
     final TextTheme style = Theme.of(context).textTheme;
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            'store'.tr,
-            style: const TextStyle(color: black),
-          ),
-          actions: [
-            Builder(
-              builder: (context) => IconButton(
-                icon: const Icon(CupertinoIcons.cart),
-                onPressed: () => openCartDrawer(context),
-                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-              ),
-            ),
-          ],
-        ),
+        appBar: const CartAppBar(overrideBackButton: false,title: Text("MARV"),),
         drawer:  CustomDrawer(),
         endDrawer:  CartDrawer(),
         body: Padding(

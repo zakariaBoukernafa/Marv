@@ -37,8 +37,8 @@ class CheckoutController extends GetxController {
             card: CreditCard(
                 name: cardHolderName.value,
                 number: cardNumber.value,
-                expMonth: cardExpiry.value!.slipitAtSlash()[0],
-                expYear: cardExpiry.value!.slipitAtSlash()[1],
+                expMonth: cardExpiry.value!.splitAtSlash()[0],
+                expYear: cardExpiry.value!.splitAtSlash()[1],
                 cvc: cvv.value)))
         .then((paymentMethod) {
       _paymentMethod = paymentMethod;

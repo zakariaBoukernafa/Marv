@@ -1,4 +1,4 @@
-import 'package:ecommerce/Services/format_money.dart';
+import 'package:ecommerce/utils/extensions/integers.dart';
 import 'package:ecommerce/models/product.dart';
 import 'package:ecommerce/routes/routers.dart';
 import 'package:ecommerce/theme/colors.dart';
@@ -45,9 +45,9 @@ class ItemThumbnail extends StatelessWidget {
               Flexible(
                   flex: 2,
                   child: Hero(
-                    tag: FormatMoney().format(product.price!),
+                    tag:product.price!.formatMoney(),
                     child: Text(
-                      FormatMoney().format(product.price!),
+                      product.price!.formatMoney(),
                       style: style.caption!
                           .copyWith(fontWeight: FontWeight.bold, color: black),
                     ),

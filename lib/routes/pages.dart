@@ -2,6 +2,8 @@ import 'package:ecommerce/Controllers/Binding/auth_binding.dart';
 import 'package:ecommerce/Controllers/Binding/cart_binding.dart';
 import 'package:ecommerce/Controllers/Binding/checkout_binding.dart';
 import 'package:ecommerce/Controllers/Binding/dashboard_binding.dart';
+import 'package:ecommerce/Controllers/Binding/orders_binding.dart';
+import 'package:ecommerce/screens/Orders/orders_screen.dart';
 import 'package:ecommerce/Screens/Auth/Login/login.dart';
 import 'package:ecommerce/Screens/Auth/SignUp/signup.dart';
 import 'package:ecommerce/Screens/Home/home.dart';
@@ -44,6 +46,11 @@ class Pages {
       name: Routers.checkout,
       page: () => CheckoutScreen(),
       binding: CheckoutBinding(),
+    ),
+    GetPage(
+      name: Routers.orders,
+      page: () => OrdersScreen(),
+      binding: OrdersBinding(),
     ),
   ];
 }

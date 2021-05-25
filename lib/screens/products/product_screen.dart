@@ -1,5 +1,6 @@
 import 'package:ecommerce/Controllers/user_controller.dart';
-import 'package:ecommerce/Services/format_money.dart';
+import 'package:ecommerce/utils/extensions/integers.dart';
+import 'package:ecommerce/Widgets/Appbars/app_bar.dart';
 import 'package:ecommerce/Widgets/Containers/product_preview.dart';
 import 'package:ecommerce/Widgets/Containers/sign_popup.dart';
 import 'package:ecommerce/Widgets/animations/circular_indicator.dart';
@@ -26,12 +27,14 @@ class _ProductScreenState extends State<ProductScreen> {
 
   // ignore: type_annotate_public_apis
   late final product;
+  int? productPrice;
 
   @override
   void initState() {
 
     super.initState();
     product = Get.arguments;
+    productPrice = product!.price as int;
   }
 
   @override
@@ -40,29 +43,7 @@ class _ProductScreenState extends State<ProductScreen> {
     return SafeArea(
       child: Scaffold(
         key: _scaffoldKey,
-        appBar: AppBar(
-          actions: [
-            Builder(
-              builder: (context) => IconButton(
-                icon: const Icon(CupertinoIcons.shopping_cart),
-                onPressed: () {
-                  openCartDrawer(context);
-                },
-                tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-              ),
-            ),
-          ],
-          leading: Builder(
-            builder: (BuildContext context) {
-              return IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              );
-            },
-          ),
-        ),
+        appBar: const CartAppBar(),
         endDrawer: CartDrawer(),
         floatingActionButton: Obx(
           () => ElevatedButton(
@@ -91,9 +72,9 @@ class _ProductScreenState extends State<ProductScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Hero(
-                    tag: FormatMoney().format(product.price! as int),
+                    tag: productPrice!.formatMoney(),
                     child: Text(
-                      FormatMoney().format(product.price! as int),
+                      productPrice!.formatMoney(),
                       style: style.headline6!.copyWith(color: green),
                     ),
                   ),

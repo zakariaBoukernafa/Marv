@@ -1,5 +1,6 @@
 import 'package:ecommerce/Controllers/user_controller.dart';
 import 'package:ecommerce/Widgets/Containers/sign_popup.dart';
+import 'package:ecommerce/routes/routers.dart';
 import 'package:ecommerce/utils/user_state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +52,13 @@ class CustomDrawer extends StatelessWidget {
                   'Orders',
                   style: style.headline6,
                 ),
-                onTap: () {},
+                onTap: () {
+                  if (!userState) {
+                    Get.dialog(SignPopup());
+                    return;
+                  }
+                  Get.toNamed(Routers.orders);
+                },
               ),
               ListTile(
                 leading: const Icon(CupertinoIcons.settings),

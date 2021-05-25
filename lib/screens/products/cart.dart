@@ -1,11 +1,11 @@
-import 'package:ecommerce/Services/format_money.dart';
+import 'package:ecommerce/Widgets/Appbars/app_bar.dart';
 import 'package:ecommerce/routes/routers.dart';
 import 'package:ecommerce/screens/products/products_controller.dart';
+import 'package:ecommerce/utils/extensions/integers.dart';
 import 'package:ecommerce/theme/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 class CartScreen extends StatefulWidget {
   final bool disableAppbar;
 
@@ -39,8 +39,7 @@ class _CartScreenState extends State<CartScreen> with SingleTickerProviderStateM
                       Text(
                           "Total of ${ProductsController.to.cartItems.length} items"),
                       Text(
-                        FormatMoney()
-                            .format(ProductsController.to.cartCharge.value),
+                        ProductsController.to.cartCharge.value.formatMoney(),
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       )
                     ],
@@ -57,18 +56,7 @@ class _CartScreenState extends State<CartScreen> with SingleTickerProviderStateM
       ),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,
-      appBar: widget.disableAppbar ? null:AppBar(
-        title: const Text('Shopping Cart', style: TextStyle(color: black)),
-        actions: [
-          Builder(
-            builder: (context) => IconButton(
-              icon: const Icon(CupertinoIcons.trash),
-              onPressed: () => Scaffold.of(context).openEndDrawer(),
-              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
-            ),
-          ),
-        ],
-      ),
+      appBar: widget.disableAppbar ? null:const CartAppBar(),
       body: Padding(
           padding: EdgeInsets.only(
               left: 16.0, right: 16.0, top: 16.0, bottom: Get.height * 0.15),
