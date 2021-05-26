@@ -30,7 +30,7 @@ Marv is an E-commerce app created in Flutter using KeystoneJS GraphQL Api as  ba
 
 ```sh
 $ git clone https://github.com/zakariaBoukernafa/Marv
-$ cd newsbuzz/
+$ cd Marv/
 ```
 
 #### 3. Setup Keystone API
