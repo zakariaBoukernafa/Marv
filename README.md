@@ -48,7 +48,7 @@ $ cd Marv/
 1. Open [config.dart](./lib/config.dart) and set your [Graphql API](https://github.com/zakariaBoukernafa/GraphQL-keystone-API)  endpoint.
 
 
-#### 4. Run the app
+#### 6. Run the app
 
 ```sh
 $ flutter pub get
